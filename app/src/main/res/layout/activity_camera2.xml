@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".activitys.Camera2Activity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <SurfaceView
+            android:id="@+id/sv_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/homecamera_bottom_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00ffffff"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:scaleType="centerInside"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back"/>
+
+        <ImageView
+            android:id="@+id/iv_camera"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerInside"
+            android:layout_marginBottom="20dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_saomiao"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/home_custom_top_relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="#00ffffff"
+        android:layout_alignParentTop="true"
+        >
+
+<!--        // 切换闪光灯-->
+        <ImageView
+            android:id="@+id/camera_flash"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:src="@drawable/ic_mine" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"/>
+
+<!--        // 前/后 镜头-->
+        <ImageView
+            android:id="@+id/camera_switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:src="@drawable/ic_phone" />
+
+    </LinearLayout>
+
+</RelativeLayout>
