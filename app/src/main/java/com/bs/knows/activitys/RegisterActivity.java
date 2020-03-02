@@ -42,6 +42,6 @@ public class RegisterActivity extends BaseActivty {
         Context context=getBaseContext();
 
         UserUtils.signUp(context,phone,password,passwordConfirm);
-
+        this.finish();
     }
 }

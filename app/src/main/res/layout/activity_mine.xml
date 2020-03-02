@@ -28,7 +28,7 @@
         android:paddingLeft="@dimen/marginSize"
         android:gravity="center_vertical"
         android:onClick="onChangeClick"
-        android:background="@drawable/item_commit_select"/>
+        android:background="@drawable/commit_item_select"/>
 
     <Button
         style="@style/commintButton"

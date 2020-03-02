@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,9 +26,11 @@ import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 
 public class UserUtils {
 
+    private static boolean Success =false;
+    private static String TAG="error";
+
 
 //    ======================================================  用户登录  ======================================================
-
     /**
      * 用户登录
      * @param context       获得View
@@ -35,22 +38,20 @@ public class UserUtils {
      * @param password      密码
      */
     public static void userLogin(final Context context, String phone, String password) {
+        final UserModel user = new UserModel();
         if(!validateLogin(context,phone,password)){
-            return;
+            return ;
         }
 
-        final UserModel user = new UserModel();
-        //此处替换为你的用户名
         user.setUsername(phone);
-        //此处替换为你的密码
         user.setPassword(password);
         user.login(new SaveListener<UserModel>() {
             @Override
-            public void done(UserModel bmobUser, BmobException e) {
+            public void done(UserModel bmobuser, BmobException e) {
                 if (e == null) {
-                    UserModel user = BmobUser.getCurrentUser(UserModel.class);
                     Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(context, MainActivity.class));
+                        Intent intent=new Intent(context,MainActivity.class);
+                        context.startActivity(intent);
 
                 } else {
                     ChackReturnCode(context,e);
@@ -67,9 +68,9 @@ public class UserUtils {
      * @param password  UserPassword
      */
     public static void signUp(final Context context, String phone, String password,String repassword) {
-        if(!validateRegister(context, phone, password,repassword)){
-            return;
-        }
+       if(!validateRegister(context,phone,password,repassword)){
+           return;
+       }
 
         final UserModel user = new UserModel();
         user.setUsername(phone);
@@ -80,13 +81,15 @@ public class UserUtils {
                 if (e == null) {
                     Toast.makeText(context, "注册成功！", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(context,LoginActivity.class);
-                    startActivity(intent);
+                    context.startActivity(intent);
                 } else {
                     ChackReturnCode(context,e);
                 }
             }
         });
     }
+
+
 
 
 
@@ -130,7 +133,7 @@ public class UserUtils {
      */
     public static void updatePassword(final Context context,String old_password,String new_password,String new_repassword){
         if(!validateUpdatePassword(context,old_password,new_password,new_repassword)){
-            return;
+            return ;
         }
 
         BmobUser.updateCurrentUserPassword(old_password, new_password, new UpdateListener() {
@@ -138,12 +141,15 @@ public class UserUtils {
             public void done(BmobException e) {
                 if (e == null) {
                     Toast.makeText(context, "密码修改成功！", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(context, MineActivity.class));
+                    Intent intent=new Intent(context,MineActivity.class);
+                    context.startActivity(intent);
+
                 } else {
                     ChackReturnCode(context,e);
                 }
             }
         });
+
     }
 
 //    ==============================================================================================================================
@@ -160,7 +166,7 @@ public class UserUtils {
         if(e.getErrorCode()==101){
             Toast.makeText(context, "登录失败,用户名或密码错误", Toast.LENGTH_SHORT).show();
         }
-        if(e.getErrorCode()==102){
+        if(e.getErrorCode()==210){
             Toast.makeText(context, "密码修改失败,旧密码错误", Toast.LENGTH_SHORT).show();
         }
     }

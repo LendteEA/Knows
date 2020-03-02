@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 实体颜色 -->
+    <solid android:color="@android:color/white"/>
+
+    <!-- 弧度 -->
+    <corners android:radius="@dimen/radius" tools:ignore="StateListReachable" />
+</selector>
