@@ -1,0 +1,56 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!--
+
+        colorPrimaryDark与statusBarColor
+                      都可以修改statusBar颜色、Android5.0以上才可以支持
+
+        statusBarColor具有更高优先级
+                      在5.0以下会出现警告
+                      值继承于colorPrimaryDark
+
+        若要在低于5.0版本的系统运行则需要新建 values-v21 文件夹
+        并将styles复制一份放入其中
+
+        -->
+        <item name="colorPrimaryDark">@color/mainColor</item>
+    </style>
+
+<!--    动画-->
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+
+        <!-- 打开Activity时，新进入的activity执行的动画 -->
+        <item name="android:activityOpenEnterAnimation">@anim/open_enter</item>
+        <!-- 打开Activity时，原Activity执行动画 -->
+        <item name="android:activityOpenExitAnimation">@anim/open_exit</item>
+        <!-- 退出Activity时， 退出的Activity执行动画 -->
+        <item name="android:activityCloseExitAnimation">@anim/close_exit</item>
+        <!-- 退出Activity时， 重新显示的Activity执行动画 -->
+        <item name="android:activityCloseEnterAnimation">@anim/close_enter</item>
+    </style>
+
+    <!--  分割线样式  -->
+    <style name="line">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/lineColor</item>
+        <item name="android:layout_margin">@dimen/marginSize</item>
+    </style>
+    <!--  登录按钮样式  -->
+    <style name="commintButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/btnHeight</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/titleSize</item>
+        <item name="android:layout_marginLeft">@dimen/marginSize</item>
+        <item name="android:layout_marginRight">@dimen/marginSize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/commit_btn_select</item>
+
+    </style>
+
+
+</resources>

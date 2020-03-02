@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activitys.LoginActivity">
+
+    <include layout="@layout/nav_bar"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_saomiao"
+        android:layout_gravity="center_horizontal"/>
+
+    <com.bs.knows.views.InputView
+        android:id="@+id/input_phone_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/inputViewHeight"
+        android:layout_marginTop="@dimen/marginSize"
+        app:input_icon="@drawable/ic_phone"
+        app:input_hint="请输入手机号"
+        app:is_password="false"
+        />
+    <View
+        style="@style/line" />
+
+    <com.bs.knows.views.InputView
+        android:id="@+id/input_password_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/inputViewHeight"
+        android:layout_marginTop="@dimen/marginSize"
+        app:input_icon="@drawable/ic_password"
+        app:input_hint="请输入密码"
+        app:is_password="true"
+        />
+    <View
+        style="@style/line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/marginSize"
+        android:text="没有账号？立即注册"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/infoSize"
+        android:textColor="@color/mainColor"
+        android:onClick="onRegisterClick"
+        />
+    <Button
+       style="@style/commintButton"
+        android:text="登录"
+        android:textSize="@dimen/titleSize"
+        android:layout_marginTop="@dimen/marginSize"
+        android:onClick="onCommitClick"/>
+
+</LinearLayout>

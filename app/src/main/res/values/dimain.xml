@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 页面边距 -->
+    <dimen name="marginSize">12dp</dimen>
+    <!-- navBar高度 -->
+    <dimen name="navbarHeight">56dp</dimen>
+    <!-- 输入框高度 -->
+    <dimen name="inputViewHeight">44dp</dimen>
+    <!-- 按钮高度 -->
+    <dimen name="btnHeight">44dp</dimen>
+
+
+    <!-- 标题字体大小 -->
+    <dimen name="navBarTitleSize">22dp</dimen>
+    <!-- 提示字体大小 -->
+    <dimen name="titleSize">18dp</dimen>
+    <!-- 密码提示字体大小 -->
+    <dimen name="infoSize">14dp</dimen>
+
+    <!-- 按钮边角弧度 -->
+    <dimen name="radius">5dp</dimen>
+
+    <dimen name="itemHeight">44dp</dimen>
+    <dimen name="marginTabSize">4dp</dimen>
+    <dimen name="albumMarginSize">4dp</dimen>
+    <dimen name="playNumImgSize">18dp</dimen>
+    <dimen name="itemIconSize">56dp</dimen>
+    <dimen name="itemPlaySize">36dp</dimen>
+    <dimen name="discTopSize">90dp</dimen>
+    <dimen name="playMusicIconSize">210dp</dimen>
+</resources>
+
