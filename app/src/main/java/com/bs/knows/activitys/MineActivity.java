@@ -10,8 +10,6 @@ import com.bs.knows.utils.UserUtils;
 
 public class MineActivity extends BaseActivty {
 
-    private ImageView mBack;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +20,7 @@ public class MineActivity extends BaseActivty {
 
     private void initView() {
         initNavBar(true,"我的",false);
-        mBack=findViewById(R.id.iv_back);
+        ImageView mBack = findViewById(R.id.iv_back);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
