@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bs.knows.R;
 
@@ -42,6 +43,7 @@ public class ShowDetailActivity extends BaseActivty {
 
     private void getPic(){
         String path=getIntent().getStringExtra("picPath");
+        Toast.makeText(this,"文件已保存在本地："+path,Toast.LENGTH_SHORT).show();
         Bitmap bitmap= BitmapFactory.decodeFile(path);
         mImageView.setImageBitmap(bitmap);
     }

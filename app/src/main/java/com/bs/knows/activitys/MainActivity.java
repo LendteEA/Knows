@@ -1,10 +1,15 @@
 package com.bs.knows.activitys;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +54,11 @@ public class MainActivity extends BaseActivty {
         HistoryListAdapter mListAdapter = new HistoryListAdapter(this);
         mRvList.setAdapter(mListAdapter);
 
+        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)
+                ||!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+        }
 
         ImageView mMine = fd(R.id.iv_mine);
         mMine.setOnClickListener(new View.OnClickListener() {
@@ -60,4 +70,5 @@ public class MainActivity extends BaseActivty {
 
 
     }
+
 }

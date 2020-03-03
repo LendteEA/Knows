@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".activitys.ShowDetailActivity">
 
+    <include layout="@layout/nav_bar"/>
     <TextView
         android:id="@+id/tv_showPath"
         android:layout_width="match_parent"

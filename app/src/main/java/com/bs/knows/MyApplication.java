@@ -11,5 +11,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Bmob.initialize(this, "642d533f46372da6128be5142a5dc513");
+
+
     }
 }

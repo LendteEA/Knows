@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.bs.knows.R;
+import com.bs.knows.activitys.ChangePasswordActivity;
 import com.bs.knows.activitys.LoginActivity;
 import com.bs.knows.activitys.MainActivity;
 import com.bs.knows.activitys.MineActivity;
@@ -22,25 +25,28 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
+import static com.blankj.utilcode.util.ActivityUtils.finishActivity;
 import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 
 public class UserUtils {
 
-    private static boolean Success =false;
-    private static String TAG="error";
+    private static boolean Success = false;
+    private static String TAG = "error";
 
 
 //    ======================================================  用户登录  ======================================================
+
     /**
      * 用户登录
-     * @param context       获得View
-     * @param phone         用户名
-     * @param password      密码
+     *
+     * @param context  获得View
+     * @param phone    用户名
+     * @param password 密码
      */
     public static void userLogin(final Context context, String phone, String password) {
         final UserModel user = new UserModel();
-        if(!validateLogin(context,phone,password)){
-            return ;
+        if (!validateLogin(context, phone, password)) {
+            return;
         }
 
         user.setUsername(phone);
@@ -50,27 +56,33 @@ public class UserUtils {
             public void done(UserModel bmobuser, BmobException e) {
                 if (e == null) {
                     Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(context,MainActivity.class);
-                        context.startActivity(intent);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                    //        定义Activity跳转动画
+                    ((Activity) context).overridePendingTransition(R.anim.close_enter, R.anim.close_exit);
+
 
                 } else {
-                    ChackReturnCode(context,e);
+                    ChackReturnCode(context, e);
                 }
             }
         });
     }
 
     //    ======================================================  用户注册  ======================================================
+
     /**
      * 账号密码注册
-     * @param context   获得View
-     * @param phone     Username
-     * @param password  UserPassword
+     *
+     * @param context  获得View
+     * @param phone    Username
+     * @param password UserPassword
      */
-    public static void signUp(final Context context, String phone, String password,String repassword) {
-       if(!validateRegister(context,phone,password,repassword)){
-           return;
-       }
+    public static void signUp(final Context context, String phone, String password, String repassword) {
+        if (!validateRegister(context, phone, password, repassword)) {
+            return;
+        }
 
         final UserModel user = new UserModel();
         user.setUsername(phone);
@@ -80,25 +92,25 @@ public class UserUtils {
             public void done(UserModel user, BmobException e) {
                 if (e == null) {
                     Toast.makeText(context, "注册成功！", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(context,LoginActivity.class);
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
+//        定义Activity跳转动画
+                    ((Activity) context).overridePendingTransition(R.anim.open_enter, R.anim.open_exit);
                 } else {
-                    ChackReturnCode(context,e);
+                    ChackReturnCode(context, e);
                 }
             }
         });
     }
 
 
-
-
-
-
-
 //    ======================================================  用户退出登录  ======================================================
+
     /**
      * 退出登录
-     * @param context      获得View
+     *
+     * @param context 获得View
      */
     public static void logout(Context context) {
 //        删除sp保存的用户标记
@@ -126,14 +138,15 @@ public class UserUtils {
 
     /**
      * 用户修改密码
-     * @param context           获得view
-     * @param old_password      旧密码
-     * @param new_password      新密码
-     * @param new_repassword    重新输入新密码
+     *
+     * @param context        获得view
+     * @param old_password   旧密码
+     * @param new_password   新密码
+     * @param new_repassword 重新输入新密码
      */
-    public static void updatePassword(final Context context,String old_password,String new_password,String new_repassword){
-        if(!validateUpdatePassword(context,old_password,new_password,new_repassword)){
-            return ;
+    public static void updatePassword(final Context context, String old_password, String new_password, String new_repassword) {
+        if (!validateUpdatePassword(context, old_password, new_password, new_repassword)) {
+            return;
         }
 
         BmobUser.updateCurrentUserPassword(old_password, new_password, new UpdateListener() {
@@ -141,11 +154,14 @@ public class UserUtils {
             public void done(BmobException e) {
                 if (e == null) {
                     Toast.makeText(context, "密码修改成功！", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(context,MineActivity.class);
+                    Intent intent = new Intent(context, MineActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
+                    //        定义Activity跳转动画
+                    ((Activity) context).overridePendingTransition(R.anim.open_enter, R.anim.open_exit);
 
                 } else {
-                    ChackReturnCode(context,e);
+                    ChackReturnCode(context, e);
                 }
             }
         });
@@ -156,27 +172,29 @@ public class UserUtils {
 
     /**
      * 返回码检查
-     * @param context   获得View
-     * @param e         错误码
+     *
+     * @param context 获得View
+     * @param e       错误码
      */
     private static void ChackReturnCode(Context context, BmobException e) {
-        if(e.getErrorCode()==202){
+        if (e.getErrorCode() == 202) {
             Toast.makeText(context, "注册失败,该用户已存在", Toast.LENGTH_SHORT).show();
         }
-        if(e.getErrorCode()==101){
+        if (e.getErrorCode() == 101) {
             Toast.makeText(context, "登录失败,用户名或密码错误", Toast.LENGTH_SHORT).show();
         }
-        if(e.getErrorCode()==210){
+        if (e.getErrorCode() == 210) {
             Toast.makeText(context, "密码修改失败,旧密码错误", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
      * 验证登录输入框内容
-     * @param context   获得View
-     * @param phone     Username
-     * @param password  UserPassword
-     * @return          boolean
+     *
+     * @param context  获得View
+     * @param phone    Username
+     * @param password UserPassword
+     * @return boolean
      */
     public static boolean validateLogin(Context context, String phone, String password) {
 //        简单的
@@ -197,13 +215,14 @@ public class UserUtils {
 
     /**
      * 验证注册输入框内容
+     *
      * @param context    获得View
      * @param phone      Username
      * @param password   UserPassword
      * @param repassword UserRePassword
-     * @return           boolean
+     * @return boolean
      */
-    public static boolean validateRegister(Context context, String phone, String password,String repassword) {
+    public static boolean validateRegister(Context context, String phone, String password, String repassword) {
 //        简单的
 //        RegexUtils.isMobileSimple(phone);
 //        精确地
@@ -220,19 +239,24 @@ public class UserUtils {
             Toast.makeText(context, "请再次输入密码", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (!password.equals(repassword)) {
+            Toast.makeText(context, "两次新密码输入不一致，请重新输入", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
 
     /**
      * 验证重置密码输入框内容
-     * @param context              获得View
-     * @param old_password         旧密码
-     * @param new_password         新密码
-     * @param new_repassword       重新输入新密码
-     * @return                     boolean
+     *
+     * @param context        获得View
+     * @param old_password   旧密码
+     * @param new_password   新密码
+     * @param new_repassword 重新输入新密码
+     * @return boolean
      */
-    public static boolean validateUpdatePassword(Context context, String old_password, String new_password,String new_repassword) {
+    public static boolean validateUpdatePassword(Context context, String old_password, String new_password, String new_repassword) {
 //        简单的
 //        RegexUtils.isMobileSimple(phone);
 //        精确地
@@ -249,9 +273,12 @@ public class UserUtils {
             Toast.makeText(context, "请再次输入新密码", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (!new_password.equals(new_repassword)) {
+            Toast.makeText(context, "两次新密码输入不一致，请重新输入", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
-
 
 
 }

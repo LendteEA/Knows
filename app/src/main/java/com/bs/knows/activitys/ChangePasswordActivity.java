@@ -37,6 +37,5 @@ public class ChangePasswordActivity extends BaseActivty {
         String new_passwords_confirm=new_password_confirm.getInputStr().trim();
 
         UserUtils.updatePassword(this,old_passwords,new_passwords,new_passwords_confirm);
-        finish();
     }
 }

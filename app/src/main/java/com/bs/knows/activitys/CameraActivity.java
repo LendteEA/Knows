@@ -1,6 +1,8 @@
 package com.bs.knows.activitys;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -9,6 +11,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.bs.knows.R;
 
@@ -20,8 +25,8 @@ import java.io.IOException;
 public class CameraActivity extends BaseActivty implements SurfaceHolder.Callback {
 
     private Camera mCamera;
-    private SurfaceView surfaceView;
-    private SurfaceHolder surfaceHolder;
+    private SurfaceView mSurfaceView;
+    private SurfaceHolder mSurfaceHolder;
     private static String TAG="error";
     private Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @Override
@@ -38,7 +43,6 @@ public class CameraActivity extends BaseActivty implements SurfaceHolder.Callbac
                 CameraActivity.this.finish();
 
             } catch (FileNotFoundException e) {
-                Log.d(TAG, "FileNOTFOUNDonPictureTaken: "+e);
                 e.printStackTrace();
             } catch (IOException er) {
                 Log.d(TAG, "onPictureTaken: "+er);
@@ -59,16 +63,23 @@ public class CameraActivity extends BaseActivty implements SurfaceHolder.Callbac
     }
 
     private void initView() {
-        initNavBar(true, "扫描", false);
-        surfaceView = findViewById(R.id.sv_view);
-        surfaceHolder = surfaceView.getHolder();
-        surfaceHolder.addCallback(this);
+//        initNavBar(true, "扫描", false);
+        mSurfaceView = findViewById(R.id.sv_preview);
+        mSurfaceHolder = mSurfaceView.getHolder();
+        mSurfaceHolder.addCallback(this);
+
+
+    }
+
+
+    public void ExitCamera(View view) {
+        onBackPressed();
     }
 
     public void getCapture(View view) {
         Camera.Parameters parameters = mCamera.getParameters();
         parameters.setPictureFormat(ImageFormat.JPEG);
-        parameters.setPreviewSize(800, 400);
+        parameters.setPreviewSize(1080, 1920);
         parameters.setFocusMode(Camera.Parameters.FLASH_MODE_AUTO);
         mCamera.autoFocus(new Camera.AutoFocusCallback() {
             @Override
@@ -78,6 +89,11 @@ public class CameraActivity extends BaseActivty implements SurfaceHolder.Callbac
                 }
             }
         });
+
+//        //打开系统相册
+//
+//            Intent intent =new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//            startActivityForResult(intent, 6);
 
     }
 
@@ -93,9 +109,9 @@ public class CameraActivity extends BaseActivty implements SurfaceHolder.Callbac
         super.onResume();
         if (mCamera == null) {
             mCamera = getCamera();
-            if (surfaceHolder != null) {
+            if (mSurfaceHolder != null) {
                 try {
-                    setStartPreview(mCamera, surfaceHolder);
+                    setStartPreview(mCamera, mSurfaceHolder);
                 } catch (IOException e) {
                     Log.d(TAG, "onResume: "+e);
                     e.printStackTrace();
@@ -126,6 +142,10 @@ public class CameraActivity extends BaseActivty implements SurfaceHolder.Callbac
      */
     private void setStartPreview(Camera camera, SurfaceHolder holder) throws IOException{
         try {
+            if(holder==null){
+                holder=mSurfaceHolder;
+            }
+            Log.d(TAG, "setStartPreview: "+holder);
             camera.setPreviewDisplay(holder);
             //预览角度进行调整
             camera.setDisplayOrientation(90);
@@ -173,4 +193,6 @@ public class CameraActivity extends BaseActivty implements SurfaceHolder.Callbac
     public void surfaceDestroyed(SurfaceHolder holder) {
         releaseCamera();
     }
+
+
 }

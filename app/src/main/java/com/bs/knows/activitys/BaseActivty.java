@@ -2,13 +2,21 @@ package com.bs.knows.activitys;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 
 import com.bs.knows.R;
+
+import java.util.List;
 
 /**
  * 作为整个Activity的父类 描述所有Activity的共性
@@ -17,6 +25,7 @@ import com.bs.knows.R;
 @SuppressLint("Registered")
 public class BaseActivty extends Activity {
 
+    private long exitTime=0;
     /**
      * 返回一个继承自view的实体 findviewbyid的封装方法
      *
@@ -53,4 +62,38 @@ public class BaseActivty extends Activity {
         });
 
     }
+
+
+
+    /**
+     * 按两次返回键退出
+     * @param keyCode   获取按键id
+     * @param event     按键事件
+     * @return          返回是否按下按键
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+
+        if ((System.currentTimeMillis()-exitTime) > 3000) {
+            Toast.makeText(this,
+                    "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
+    }
+
+
+
+
 }

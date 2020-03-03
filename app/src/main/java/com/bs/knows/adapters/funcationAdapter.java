@@ -1,19 +1,24 @@
 package com.bs.knows.adapters;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
 import com.bs.knows.activitys.CameraActivity;
+import com.bs.knows.activitys.MainActivity;
 import com.bs.knows.models.AlbumModel;
 import com.bumptech.glide.Glide;
 
@@ -49,12 +54,14 @@ public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.view
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(mContext, CameraActivity.class);
 //                intent.putExtra(AlbumListActivity.ALBUM_ID, albumModel.getAlbumId());
                 mContext.startActivity(intent);
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
