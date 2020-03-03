@@ -78,7 +78,6 @@ public class BaseActivty extends Activity {
             exit();
             return false;
         }
-
         return super.onKeyDown(keyCode, event);
     }
 
