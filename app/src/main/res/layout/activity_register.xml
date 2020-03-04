@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activitys.RegisterActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/nav_bar"/>
+    <data>
+        <variable
+            name="userRegister"
+            type="com.bs.knows.viewmodel.UserRegisterViewModel" />
+    </data>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/ic_saomiao" />
-
-    <com.bs.knows.views.InputView
-        android:id="@+id/input_phone_register"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/inputViewHeight"
-        android:layout_marginTop="@dimen/marginSize"
-        app:input_icon="@drawable/ic_phone"
-        app:input_hint="请输入手机号"
-        app:is_password="false"
-        />
-    <View
-        style="@style/line" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.RegisterActivity">
 
-    <com.bs.knows.views.InputView
-        android:id="@+id/input_password_register"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/inputViewHeight"
-        app:input_icon="@drawable/ic_password"
-        app:input_hint="请输入密码"
-        app:is_password="true"
-        />
-    <View
-        style="@style/line" />
+        <include layout="@layout/nav_bar" />
 
-    <com.bs.knows.views.InputView
-        android:id="@+id/input_repassword_register"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/inputViewHeight"
-        app:input_icon="@drawable/ic_password"
-        app:input_hint="请确认密码"
-        app:is_password="true"
-        />
-    <View
-        style="@style/line" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_saomiao" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/marginSize"
-        android:text="已有账号？请登录！"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/infoSize"
-        android:textColor="@color/mainColor"
-        android:onClick="onCommitClick"
-        />
-    <Button
-        android:id="@+id/bt_commintButton"
-        style="@style/commintButton"
-        android:text="注册"
-        android:textSize="@dimen/titleSize"
-        android:layout_marginTop="@dimen/marginSize"
-        android:onClick="RegonRegisterClick" />
+        <com.bs.knows.views.InputView
+            android:id="@+id/input_phone_register"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/inputViewHeight"
+            android:layout_marginTop="@dimen/marginSize"
+            app:input_icon="@drawable/ic_phone"
+            app:input_hint="请输入手机号"
+            app:is_password="false" />
 
-</LinearLayout>
+        <View style="@style/line" />
+
+        <com.bs.knows.views.InputView
+            android:id="@+id/input_password_register"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/inputViewHeight"
+            app:input_icon="@drawable/ic_password"
+            app:input_hint="请输入密码"
+            app:is_password="true" />
+
+        <View style="@style/line" />
+
+        <com.bs.knows.views.InputView
+            android:id="@+id/input_repassword_register"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/inputViewHeight"
+            app:input_icon="@drawable/ic_password"
+            app:input_hint="请确认密码"
+            app:is_password="true" />
+
+        <View style="@style/line" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/marginSize"
+            android:text="已有账号？请登录！"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/infoSize"
+            android:textColor="@color/mainColor"
+            android:onClick="@{userRegister.backtoLoginActivity}" />
+
+        <Button
+            android:id="@+id/bt_commintButton"
+            style="@style/commintButton"
+            android:text="注册"
+            android:textSize="@dimen/titleSize"
+            android:layout_marginTop="@dimen/marginSize"
+            android:onClick="@{userRegister.CheckUserRegisterMessage}" />
+
+    </LinearLayout>
+</layout>

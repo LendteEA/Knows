@@ -28,5 +28,9 @@
     <dimen name="itemPlaySize">36dp</dimen>
     <dimen name="discTopSize">90dp</dimen>
     <dimen name="playMusicIconSize">210dp</dimen>
+
+    <dimen name="grid_expected_size">120dp</dimen>
+    <dimen name="item_margin_horizontal">24dp</dimen>
+    <dimen name="item_margin_vertical">8dp</dimen>
 </resources>
 

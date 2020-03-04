@@ -12,9 +12,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 自动对焦 -->
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-feature android:name="android.hardware.camera"/>
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:name=".MyApplication"
@@ -24,21 +25,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.Camera2Activity"></activity>
-        <activity android:name=".activitys.CameraActivity" />
-        <activity android:name=".activitys.ShowDetailActivity" />
-        <activity android:name=".activitys.MineActivity" />
-
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.bs.knows.BmobContentProvider" />
-
-        <activity android:name=".activitys.RegisterActivity" />
-        <activity android:name=".activitys.ChangePasswordActivity" />
-        <activity android:name=".activitys.AlbumListActivity" />
-        <activity android:name=".activitys.LoginActivity" />
-        <activity android:name=".activitys.MainActivity" />
-        <activity android:name=".activitys.WelcomeActivity">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="PhotoPicker"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/photo_path" />
+        </provider>
+        <activity android:name=".activity.CropCameraActivity"></activity>
+        <activity android:name=".activity.CameraActivity" />
+        <activity android:name=".activity.ShowDetailActivity" />
+        <activity android:name=".activity.MineActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ChangePasswordActivity" />
+        <activity android:name=".activity.AlbumListActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

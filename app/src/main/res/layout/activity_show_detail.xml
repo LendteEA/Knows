@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activitys.ShowDetailActivity">
+    tools:context=".activity.ShowDetailActivity">
 
     <include layout="@layout/nav_bar"/>
     <TextView

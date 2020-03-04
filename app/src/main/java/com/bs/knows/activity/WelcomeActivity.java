@@ -1,16 +1,12 @@
-package com.bs.knows.activitys;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.bs.knows.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.bs.knows.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 /**
 *  @author LendteEA

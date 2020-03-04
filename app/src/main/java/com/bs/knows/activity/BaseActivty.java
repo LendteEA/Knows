@@ -1,11 +1,7 @@
-package com.bs.knows.activitys;
+package com.bs.knows.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,8 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 
 import com.bs.knows.R;
-
-import java.util.List;
 
 /**
  * 作为整个Activity的父类 描述所有Activity的共性
@@ -78,7 +72,6 @@ public class BaseActivty extends Activity {
             exit();
             return false;
         }
-
         return super.onKeyDown(keyCode, event);
     }
 

@@ -1,53 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/black"
-    tools:context=".activitys.CameraActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <SurfaceView
-            android:id="@+id/sv_preview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </FrameLayout>
+    <data>
+        <variable
+            name="camera"
+            type="com.bs.knows.viewmodel.CameraViewModel" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/homecamera_bottom_relative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00ffffff"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/black"
+        tools:context=".activity.CameraActivity">
 
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ic_back"
-            android:onClick="ExitCamera"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_camera"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:scaleType="centerInside"
-            android:layout_marginBottom="20dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/ic_saomiao"
-            android:onClick="getCapture"/>
+            <SurfaceView
+                android:id="@+id/sv_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/homecamera_bottom_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_back"
+                android:onClick="@{camera.exitCamera}" />
+
+            <ImageView
+                android:id="@+id/iv_camera"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerInside"
+                android:layout_marginBottom="20dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_saomiao"
+                android:onClick="@{camera.getCapture}" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
-    
-
-</RelativeLayout>
+</layout>

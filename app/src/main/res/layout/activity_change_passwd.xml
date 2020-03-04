@@ -1,60 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activitys.ChangePasswordActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/nav_bar"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_saomiao"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/marginSize"
-        android:contentDescription="@string/todo" />
+    <data>
+        <variable
+            name="userupdatepassword"
+            type="com.bs.knows.viewmodel.UserUpdatePasswordViewModel" />
+    </data>
 
-    <com.bs.knows.views.InputView
-        android:id="@+id/input_password_old"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/inputViewHeight"
-        android:layout_marginTop="@dimen/marginSize"
-        app:input_icon="@drawable/ic_password"
-        app:input_hint="请输入原密码"
-        app:is_password="true"
-        />
-    <View
-        style="@style/line" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.ChangePasswordActivity">
 
-    <com.bs.knows.views.InputView
-        android:id="@+id/input_password_new"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/inputViewHeight"
-        app:input_icon="@drawable/ic_password"
-        app:input_hint="请输入新密码"
-        app:is_password="true"
-        />
-    <View
-        style="@style/line" />
+        <include layout="@layout/nav_bar" />
 
-    <com.bs.knows.views.InputView
-        android:id="@+id/input_password_confirm_new"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/inputViewHeight"
-        app:input_icon="@drawable/ic_password"
-        app:input_hint="请确认新密码"
-        app:is_password="true"
-        />
-    <View
-        style="@style/line" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_saomiao"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/marginSize"
+            android:contentDescription="@string/todo" />
 
-    <Button
-        style="@style/commintButton"
-        android:text="@string/Register"
-        android:textSize="@dimen/titleSize"
-        android:layout_marginTop="@dimen/marginSize"
-        android:onClick="onRegisterClick"/>
+        <com.bs.knows.views.InputView
+            android:id="@+id/input_password_old"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/inputViewHeight"
+            android:layout_marginTop="@dimen/marginSize"
+            app:input_icon="@drawable/ic_password"
+            app:input_hint="请输入原密码"
+            app:is_password="true" />
 
-</LinearLayout>
+        <View style="@style/line" />
+
+        <com.bs.knows.views.InputView
+            android:id="@+id/input_password_new"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/inputViewHeight"
+            app:input_icon="@drawable/ic_password"
+            app:input_hint="请输入新密码"
+            app:is_password="true" />
+
+        <View style="@style/line" />
+
+        <com.bs.knows.views.InputView
+            android:id="@+id/input_password_confirm_new"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/inputViewHeight"
+            app:input_icon="@drawable/ic_password"
+            app:input_hint="请确认新密码"
+            app:is_password="true" />
+
+        <View style="@style/line" />
+
+        <Button
+            style="@style/commintButton"
+            android:text="@string/Register"
+            android:textSize="@dimen/titleSize"
+            android:layout_marginTop="@dimen/marginSize"
+            android:onClick="@{userupdatepassword.CheckUserUpdateMessage}" />
+
+    </LinearLayout>
+</layout>

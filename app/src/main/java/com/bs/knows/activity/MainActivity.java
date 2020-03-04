@@ -1,15 +1,10 @@
-package com.bs.knows.activitys;
+package com.bs.knows.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +14,6 @@ import com.bs.knows.R;
 import com.bs.knows.adapters.HistoryListAdapter;
 import com.bs.knows.adapters.funcationAdapter;
 import com.bs.knows.views.CridSpaceItemDecoration;
-import com.bs.knows.views.InputView;
 
 
 //从父类BaseActivity继承一些共性的东西
@@ -54,11 +48,18 @@ public class MainActivity extends BaseActivty {
         HistoryListAdapter mListAdapter = new HistoryListAdapter(this);
         mRvList.setAdapter(mListAdapter);
 
-        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)
-                ||!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
-        }
+//        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
+//
+//        }
+//        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+//        }
+//        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
+//        }
+
+
 
         ImageView mMine = fd(R.id.iv_mine);
         mMine.setOnClickListener(new View.OnClickListener() {

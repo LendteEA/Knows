@@ -1,6 +1,4 @@
-package com.bs.knows.activitys;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.bs.knows.activity;
 
 import android.os.Bundle;
 

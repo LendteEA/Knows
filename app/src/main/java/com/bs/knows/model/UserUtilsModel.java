@@ -1,34 +1,24 @@
-package com.bs.knows.utils;
+package com.bs.knows.model;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.RegexUtils;
-import com.blankj.utilcode.util.SPUtils;
-import com.blankj.utilcode.util.StringUtils;
 import com.bs.knows.R;
-import com.bs.knows.activitys.ChangePasswordActivity;
-import com.bs.knows.activitys.LoginActivity;
-import com.bs.knows.activitys.MainActivity;
-import com.bs.knows.activitys.MineActivity;
+import com.bs.knows.activity.LoginActivity;
+import com.bs.knows.activity.MainActivity;
+import com.bs.knows.activity.MineActivity;
+import com.bs.knows.utils.UserModel;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-import static com.blankj.utilcode.util.ActivityUtils.finishActivity;
-import static com.blankj.utilcode.util.ActivityUtils.startActivity;
-
-public class UserUtils {
+public class UserUtilsModel {
 
     private static boolean Success = false;
     private static String TAG = "error";
