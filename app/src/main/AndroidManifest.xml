@@ -28,6 +28,10 @@
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.bs.knows.BmobContentProvider" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="PhotoPicker"

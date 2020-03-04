@@ -57,6 +57,8 @@ public class CameraActivity extends BaseActivty {
             if (resultCode == RESULT_OK) {
                 String path = Matisse.obtainPathResult(data).get(0);
                 if (path != null) {
+
+                    startCrop(path);
                     Log.d("TAGs", "requestCode: " + requestCode + "   resultCode:" + resultCode);
                     Intent intent = new Intent(this, ShowDetailActivity.class);
 
@@ -67,6 +69,10 @@ public class CameraActivity extends BaseActivty {
         }
 
     }
+
+    private void startCrop(String path) {
+    }
+
 
 //        private void initView() {
 //
