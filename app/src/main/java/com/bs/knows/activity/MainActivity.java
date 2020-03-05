@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivty {
     }
 
     private void initView() {
-        initNavBar(false, "Knows", true);
+        initNavBar(this,false, "Knows", true);
 
         RecyclerView mRvGrid = fd(R.id.rv_grid);
         mRvGrid.setLayoutManager(new GridLayoutManager(this, 2));

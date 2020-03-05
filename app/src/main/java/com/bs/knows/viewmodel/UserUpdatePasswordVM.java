@@ -10,11 +10,11 @@ import com.bs.knows.activity.MineActivity;
 import com.bs.knows.databinding.ActivityChangePasswdBinding;
 import com.bs.knows.model.UserUtilsModel;
 
-public class UserUpdatePasswordViewModel extends BaseObservable {
+public class UserUpdatePasswordVM extends BaseObservable {
 
     private ActivityChangePasswdBinding binding;
 
-    public UserUpdatePasswordViewModel(ActivityChangePasswdBinding binding) {
+    public UserUpdatePasswordVM(ActivityChangePasswdBinding binding) {
         this.binding = binding;
     }
 

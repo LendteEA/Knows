@@ -2,4 +2,6 @@
     <string name="app_name">Knows</string>
     <string name="todo">TODO</string>
     <string name="Register">注册</string>
+    <string name="snapshot" />
+    <string name="permission_read_sdcard">读取本地储存</string>
 </resources>

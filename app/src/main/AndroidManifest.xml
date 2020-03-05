@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 读写本地存储 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 自动对焦 -->
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -25,24 +25,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.bs.knows.BmobContentProvider" />
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="PhotoPicker"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/photo_path" />
+                android:resource="@xml/file_paths"/>
         </provider>
-        <activity android:name=".activity.CropCameraActivity"></activity>
-        <activity android:name=".activity.CameraActivity" />
+
+        <activity android:name=".activity.CamerasActivity" />
         <activity android:name=".activity.ShowDetailActivity" />
         <activity android:name=".activity.MineActivity" />
         <activity android:name=".activity.RegisterActivity" />
@@ -58,5 +56,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -2,6 +2,7 @@ package com.bs.knows.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
+import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
+import com.bs.knows.databinding.NavBarBinding;
 
 /**
  * 作为整个Activity的父类 描述所有Activity的共性
@@ -18,6 +21,8 @@ import com.bs.knows.R;
 
 @SuppressLint("Registered")
 public class BaseActivty extends Activity {
+
+
 
     private long exitTime=0;
     /**
@@ -39,16 +44,27 @@ public class BaseActivty extends Activity {
      * @param title             页面名称
      * @param isShowMine        是否显示我的
      */
-    protected void initNavBar(boolean isShowBack, String title, boolean isShowMine) {
-        ImageView mIvBack = fd(R.id.iv_back);
-        ImageView mIvMine = fd(R.id.iv_mine);
-        TextView mTvTitle = fd(R.id.tv_title);
+    protected void initNavBar(Activity activity,boolean isShowBack, String title, boolean isShowMine) {
+//        NavBarBinding barBinding=DataBindingUtil.setContentView(activity,R.layout.nav_bar);
+//        barBinding.ivBack.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
+//        barBinding.ivMine.setVisibility(isShowMine ? View.VISIBLE : View.GONE);
+//        barBinding.tvTitle.setText(title);
+//
+//        barBinding.ivBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+        ImageView ivBack=findViewById(R.id.iv_back);
+        ImageView ivMine=findViewById(R.id.iv_mine);
+        TextView tvTitle=findViewById(R.id.tv_title);
 
-        mIvBack.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
-        mIvMine.setVisibility(isShowMine ? View.VISIBLE : View.GONE);
-        mTvTitle.setText(title);
+        ivBack.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
+        ivMine.setVisibility(isShowMine ? View.VISIBLE : View.GONE);
+        tvTitle.setText(title);
 
-        mIvBack.setOnClickListener(new View.OnClickListener() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();

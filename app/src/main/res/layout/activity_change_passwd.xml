@@ -6,7 +6,7 @@
     <data>
         <variable
             name="userupdatepassword"
-            type="com.bs.knows.viewmodel.UserUpdatePasswordViewModel" />
+            type="com.bs.knows.viewmodel.UserUpdatePasswordVM" />
     </data>
 
     <LinearLayout

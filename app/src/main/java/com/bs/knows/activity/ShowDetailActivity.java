@@ -1,54 +1,45 @@
 package com.bs.knows.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+
 import com.bs.knows.R;
+import com.bs.knows.databinding.ActivityShowDetailBinding;
+import com.bs.knows.databinding.NavBarBinding;
+import com.bs.knows.viewmodel.ShowDetailVM;
 import com.bumptech.glide.Glide;
 
 public class ShowDetailActivity extends BaseActivty {
 
-    private TextView mTexyView;
-    private ImageView mImageView,mBack;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_detail);
 
-        initView();
+        com.bs.knows.databinding.ActivityShowDetailBinding binding =
+                DataBindingUtil.setContentView(this, R.layout.activity_show_detail);
+        Intent intent=getIntent();
+        ShowDetailVM showDetailVM =new ShowDetailVM(binding,intent);
+        binding.setShowDetail(showDetailVM);
+
+        initNavBar(this,true, "确认图片", false);
+                initView();
     }
 
     private void initView() {
-        initNavBar(true,"确认图片",false);
-        mTexyView=findViewById(R.id.tv_showPath);
-        mImageView=findViewById(R.id.iv_showDetail);
-        mBack=findViewById(R.id.iv_back);
-        getPic();
-        mBack.setOnClickListener(new View.OnClickListener() {
+        NavBarBinding barBinding= DataBindingUtil.setContentView(this,R.layout.nav_bar);
+
+        barBinding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ShowDetailActivity.this,MainActivity.class);
+                Intent intent = new Intent(ShowDetailActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-    }
-
-    private void getPic(){
-        String path=getIntent().getStringExtra("picPath");
-        mTexyView.setText(path);
-        Toast.makeText(this,"文件已保存在本地："+path,Toast.LENGTH_SHORT).show();
-        Glide.with(this)
-                .asBitmap()
-                .load(path)
-
-                .into(mImageView);
     }
 }

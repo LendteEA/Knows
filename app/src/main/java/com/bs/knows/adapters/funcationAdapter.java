@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
 import com.bs.knows.activity.CameraActivity;
+import com.bs.knows.activity.CamerasActivity;
+import com.bs.knows.utils.PermissionUtils;
 import com.bumptech.glide.Glide;
 
 public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.viewHolder>{
@@ -47,7 +49,7 @@ public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.view
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, CameraActivity.class);
+                Intent intent = new Intent(mContext, CamerasActivity.class);
 //                intent.putExtra(AlbumListActivity.ALBUM_ID, albumModel.getAlbumId());
                 mContext.startActivity(intent);
             }

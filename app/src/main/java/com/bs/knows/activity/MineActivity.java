@@ -9,8 +9,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
 import com.bs.knows.databinding.ActivityMineBinding;
-import com.bs.knows.model.UserUtilsModel;
-import com.bs.knows.viewmodel.UserMineViewModel;
+import com.bs.knows.viewmodel.UserMineVM;
 
 public class MineActivity extends BaseActivty {
 
@@ -21,14 +20,14 @@ public class MineActivity extends BaseActivty {
 
         ActivityMineBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_mine);
-        UserMineViewModel userMineViewModel=new UserMineViewModel(binding);
-        binding.setUserDetail(userMineViewModel);
+        UserMineVM userMineVM =new UserMineVM(binding);
+        binding.setUserDetail(userMineVM);
 
         initView();
     }
 
     private void initView() {
-        initNavBar(true, "我的", false);
+        initNavBar(this,true, "我的", false);
         ImageView mBack = findViewById(R.id.iv_back);
 
         mBack.setOnClickListener(new View.OnClickListener() {

@@ -2,8 +2,6 @@ package com.bs.knows;
 
 import android.app.Application;
 
-import com.bs.knows.permission.PermissionUtils;
-
 import cn.bmob.v3.Bmob;
 
 //存储关键信息，在开始运行时立即执行

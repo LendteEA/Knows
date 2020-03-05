@@ -6,7 +6,7 @@
     <data>
         <variable
             name="userRegister"
-            type="com.bs.knows.viewmodel.UserRegisterViewModel" />
+            type="com.bs.knows.viewmodel.UserRegisterVM" />
     </data>
 
     <LinearLayout

@@ -10,12 +10,12 @@ import com.bs.knows.activity.LoginActivity;
 import com.bs.knows.databinding.ActivityRegisterBinding;
 import com.bs.knows.model.UserUtilsModel;
 
-public class UserRegisterViewModel extends BaseObservable {
+public class UserRegisterVM extends BaseObservable {
 
     private ActivityRegisterBinding binding;
     private UserUtilsModel userUtilsModel;
 
-    public UserRegisterViewModel(ActivityRegisterBinding binding) {
+    public UserRegisterVM(ActivityRegisterBinding binding) {
         this.binding = binding;
     }
 

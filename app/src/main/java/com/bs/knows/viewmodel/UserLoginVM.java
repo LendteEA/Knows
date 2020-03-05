@@ -15,12 +15,12 @@ import com.bs.knows.views.InputView;
 
 import static com.bs.knows.model.UserUtilsModel.userLogin;
 
-public class UserLoginViewModel extends BaseObservable {
+public class UserLoginVM extends BaseObservable {
 
     private ActivityLoginBinding mbinding;
 
 
-    public UserLoginViewModel(ActivityLoginBinding binding){
+    public UserLoginVM(ActivityLoginBinding binding){
         this.mbinding=binding;
 
     }
