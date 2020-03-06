@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
-import com.bs.knows.models.HistoryModel;
 
 import java.util.List;
 
@@ -22,7 +21,6 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     private View mItemView;
     private RecyclerView mRv;
     private boolean isCalcaulationRvHeight;
-    private List<HistoryModel> mDataSource;
 
     public HistoryListAdapter(Context context){
         mContext = context;

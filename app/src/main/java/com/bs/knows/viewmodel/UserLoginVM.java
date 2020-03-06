@@ -15,7 +15,7 @@ import com.bs.knows.views.InputView;
 
 import static com.bs.knows.model.UserUtilsModel.userLogin;
 
-public class UserLoginVM extends BaseObservable {
+public class UserLoginVM {
 
     private ActivityLoginBinding mbinding;
 

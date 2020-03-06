@@ -10,10 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
 import com.bs.knows.databinding.NavBarBinding;
+import com.bs.knows.model.NavBarModel;
+import com.zyq.easypermission.EasyPermissionHelper;
 
 /**
  * 作为整个Activity的父类 描述所有Activity的共性
@@ -23,14 +26,14 @@ import com.bs.knows.databinding.NavBarBinding;
 public class BaseActivty extends Activity {
 
 
+    private long exitTime = 0;
 
-    private long exitTime=0;
     /**
      * 返回一个继承自view的实体 findviewbyid的封装方法
      *
-     * @param id    id
-     * @param <T>   T
-     * @return      findViewById
+     * @param id  id
+     * @param <T> T
+     * @return findViewById
      */
     protected <T extends View> T fd(@IdRes int id) {
         return findViewById(id);
@@ -40,12 +43,12 @@ public class BaseActivty extends Activity {
     /**
      * 初始化NavBar
      *
-     * @param isShowBack        是否显示返回键
-     * @param title             页面名称
-     * @param isShowMine        是否显示我的
+     * @param isShowBack 是否显示返回键
+     * @param title      页面名称
+     * @param isShowMine 是否显示我的
      */
-    protected void initNavBar(Activity activity,boolean isShowBack, String title, boolean isShowMine) {
-//        NavBarBinding barBinding=DataBindingUtil.setContentView(activity,R.layout.nav_bar);
+//    protected void initNavBar(Activity activity, boolean isShowBack, String title, boolean isShowMine) {
+//        NavBarBinding barBinding = DataBindingUtil.setContentView(activity, R.layout.nav_bar);
 //        barBinding.ivBack.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
 //        barBinding.ivMine.setVisibility(isShowMine ? View.VISIBLE : View.GONE);
 //        barBinding.tvTitle.setText(title);
@@ -56,9 +59,15 @@ public class BaseActivty extends Activity {
 //                onBackPressed();
 //            }
 //        });
-        ImageView ivBack=findViewById(R.id.iv_back);
-        ImageView ivMine=findViewById(R.id.iv_mine);
-        TextView tvTitle=findViewById(R.id.tv_title);
+//        NavBarModel navBarModel=new NavBarModel();
+//        barBinding.setNavBar(navBarModel);
+//    }
+
+    protected void initNavBar(Activity activity,boolean isShowBack, String title, boolean isShowMine) {
+
+        ImageView ivBack = findViewById(R.id.iv_back);
+        ImageView ivMine = findViewById(R.id.iv_mine);
+        TextView tvTitle = findViewById(R.id.tv_title);
 
         ivBack.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
         ivMine.setVisibility(isShowMine ? View.VISIBLE : View.GONE);
@@ -74,12 +83,12 @@ public class BaseActivty extends Activity {
     }
 
 
-
     /**
      * 按两次返回键退出
-     * @param keyCode   获取按键id
-     * @param event     按键事件
-     * @return          返回是否按下按键
+     *
+     * @param keyCode 获取按键id
+     * @param event   按键事件
+     * @return 返回是否按下按键
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -93,7 +102,7 @@ public class BaseActivty extends Activity {
 
     private void exit() {
 
-        if ((System.currentTimeMillis()-exitTime) > 3000) {
+        if ((System.currentTimeMillis() - exitTime) > 3000) {
             Toast.makeText(this,
                     "再按一次退出程序", Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
@@ -103,6 +112,13 @@ public class BaseActivty extends Activity {
         }
     }
 
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        //使用EasyPermissionHelper注入回调
+//        EasyPermissionHelper.getInstance().onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+//    }
 
 
 

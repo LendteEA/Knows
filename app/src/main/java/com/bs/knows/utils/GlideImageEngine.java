@@ -1,10 +1,12 @@
 package com.bs.knows.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
 
+import com.bs.knows.activity.ShowDetailActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.zhihu.matisse.engine.ImageEngine;
@@ -33,7 +35,7 @@ public class GlideImageEngine implements ImageEngine {
     }
     @Override
     public void loadImage(Context context, int resizeX, int resizeY, ImageView imageView, Uri uri) {
-        Glide.with(context)
+                Glide.with(context)
                 .load(uri)
                 .override(resizeX, resizeY)
                 .priority(Priority.HIGH)

@@ -3,6 +3,7 @@ package com.bs.knows.viewmodel;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.view.SurfaceHolder;
 import android.view.View;
 
@@ -17,13 +18,16 @@ public class CameraVM {
 //    private Camera camera;
     private static String TAG = "error";
     private Camera mCamera;
+    private Uri mUri;
     private SurfaceHolder surfaceHolder;
     private ActivityCameraBinding binding;
     private CameraModels cameraModel = new CameraModels();
 
-    public CameraVM(ActivityCameraBinding binding,SurfaceHolder surfaceHolder) {
+    public CameraVM(ActivityCameraBinding binding, SurfaceHolder surfaceHolder) {
         this.binding = binding;
         this.surfaceHolder=surfaceHolder;
+
+
     }
 
 

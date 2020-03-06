@@ -19,6 +19,7 @@ public class PermissionUtils {
     public static void Permissionx(final Context context) {
         List<PermissionItem> permissions = new ArrayList<PermissionItem>();
         permissions.add(new PermissionItem(Manifest.permission.READ_EXTERNAL_STORAGE, "读取本地文件", R.drawable.ic_file));
+        permissions.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写入本地文件", R.drawable.ic_file));
         permissions.add(new PermissionItem(Manifest.permission.CAMERA,"允许打开相机",R.drawable.ic_camera));
         HiPermission.create(context)
                 .title("请求权限")

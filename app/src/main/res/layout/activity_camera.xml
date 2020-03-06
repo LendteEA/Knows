@@ -43,7 +43,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_centerVertical="true"
                 android:background="@drawable/ic_back"
-                android:onClick="ExitCamera" />
+                android:onClick="@{(view)->camera.exitCamera(view)}" />
 
             <ImageView
                 android:id="@+id/iv_camera"
@@ -64,7 +64,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/ic_mine"
-                android:onClick="@{(view)->camera.goPhotoalbum(view)}"/>
+                android:onClick="ChooserImg"/>
 
         </RelativeLayout>
 

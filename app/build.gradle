@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.github.yalantis:ucrop:2.2.4'
     //permission
     implementation 'me.weyye.hipermission:library:1.0.7'
+    implementation 'com.github.githubZYQ:easypermission:v1.0.0'
     //takephoto
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
 //    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.4.6'

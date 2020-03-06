@@ -17,6 +17,7 @@
 
         <include layout="@layout/nav_bar" />
 
+
         <TextView
             android:id="@+id/tv_showPath"
             android:layout_width="match_parent"
@@ -29,7 +30,8 @@
             android:id="@+id/iv_showDetail"
             android:scaleType="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 </layout>

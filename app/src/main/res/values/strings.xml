@@ -4,4 +4,5 @@
     <string name="Register">注册</string>
     <string name="snapshot" />
     <string name="permission_read_sdcard">读取本地储存</string>
+    <string name="url">https://image.baidu.com/search/down?tn=download&amp;ipn=dwnl&amp;word=download&amp;ie=utf8&amp;fr=result&amp;url=http%3A%2F%2Fhbimg.huabanimg.com%2F3e0584a51033e0c6017456663801a0dffa8a54d22cbaf-ZlcuTp_fw658&amp;thumburl=https%3A%2F%2Fss2.bdstatic.com%2F70cFvnSh_Q1YnxGkpoWK1HF6hhy%2Fit%2Fu%3D1281943894%2C2812343782%26fm%3D26%26gp%3D0.jpg</string>
 </resources>

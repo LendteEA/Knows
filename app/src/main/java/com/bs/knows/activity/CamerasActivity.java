@@ -1,11 +1,16 @@
 package com.bs.knows.activity;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,14 +19,27 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
+import com.bs.knows.databinding.ActivityCameraBinding;
+import com.bs.knows.utils.AskPermission;
+import com.bs.knows.utils.CameraRequest;
+import com.bs.knows.utils.GlideImageEngine;
 import com.bs.knows.utils.PermissionUtils;
+import com.bs.knows.viewmodel.CameraVM;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zyq.easypermission.EasyPermission;
+import com.zyq.easypermission.EasyPermissionResult;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callback {
 
@@ -32,7 +50,7 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     private Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-            File tempFile = new File("/sdcard/temp.png");
+            File tempFile = new File("/sdcard/temp"+ System.currentTimeMillis()+".png");
             try {
                 FileOutputStream fos = new FileOutputStream(tempFile);
                 fos.write(data);
@@ -56,6 +74,13 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        PermissionUtils.Permissionx(this);
+
+        ActivityCameraBinding binding=
+                DataBindingUtil.setContentView(this,R.layout.activity_camera);
+        CameraVM cameraVM=new CameraVM(binding,mSurfaceHolder);
+        binding.setCamera(cameraVM);
+
         initView();
     }
 
@@ -64,19 +89,12 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(this);
 
-        PermissionUtils.Permissionx(this);
         //        隐藏statusBar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
     }
 
-
-    public void ExitCamera(View view) {
-        onBackPressed();
-    }
-
-    public void getCapture(View view) {
+    public void getCapture(final View view) {
         Camera.Parameters parameters = mCamera.getParameters();
         parameters.setPictureFormat(ImageFormat.JPEG);
         parameters.setPreviewSize(1080, 1920);
@@ -89,6 +107,32 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
                 }
             }
         });
+    }
+
+    public void ChooserImg(View view) {
+        Context context = view.getContext();
+        Matisse.from((Activity) context)
+                .choose(MimeType.ofImage(), false)
+                .countable(true)
+                .maxSelectable(1) // 图片选择的最多数量
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(0.85f) // 缩略图的比例
+                .imageEngine(new GlideImageEngine()) // 使用的图片加载引擎
+                .forResult(0x13); // 设置作为标记的请求码
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 19 && resultCode == RESULT_OK) {
+
+            //图片路径 同样视频地址也是这个 根据requestCode
+            String pathList = String.valueOf(Matisse.obtainPathResult(data));
+            Intent intent=new Intent(this,ShowDetailActivity.class);
+            intent.putExtra("picPath",pathList);
+            startActivity(intent);
+        }
+
     }
 
     @Override

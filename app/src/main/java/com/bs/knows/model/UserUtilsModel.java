@@ -11,7 +11,7 @@ import com.bs.knows.R;
 import com.bs.knows.activity.LoginActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.MineActivity;
-import com.bs.knows.utils.UserModel;
+import com.bs.knows.utils.UserBean;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -34,16 +34,16 @@ public class UserUtilsModel {
      * @param password 密码
      */
     public static void userLogin(final Context context, String phone, String password) {
-        final UserModel user = new UserModel();
+        final UserBean user = new UserBean();
         if (!validateLogin(context, phone, password)) {
             return;
         }
 
         user.setUsername(phone);
         user.setPassword(password);
-        user.login(new SaveListener<UserModel>() {
+        user.login(new SaveListener<UserBean>() {
             @Override
-            public void done(UserModel bmobuser, BmobException e) {
+            public void done(UserBean bmobuser, BmobException e) {
                 if (e == null) {
                     Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, MainActivity.class);
@@ -74,12 +74,12 @@ public class UserUtilsModel {
             return;
         }
 
-        final UserModel user = new UserModel();
+        final UserBean user = new UserBean();
         user.setUsername(phone);
         user.setPassword(password);
-        user.signUp(new SaveListener<UserModel>() {
+        user.signUp(new SaveListener<UserBean>() {
             @Override
-            public void done(UserModel user, BmobException e) {
+            public void done(UserBean user, BmobException e) {
                 if (e == null) {
                     Toast.makeText(context, "注册成功！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, LoginActivity.class);

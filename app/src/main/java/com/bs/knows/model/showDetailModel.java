@@ -2,28 +2,36 @@ package com.bs.knows.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.databinding.BindingAdapter;
+
 import com.bs.knows.databinding.ActivityShowDetailBinding;
+import com.bs.knows.utils.ImageBean;
 import com.bumptech.glide.Glide;
 
 public class showDetailModel {
 
-    private ActivityShowDetailBinding binding;
-    private Intent mIntent;
 
-    public showDetailModel(ActivityShowDetailBinding binding,Intent intent) {
-        this.binding = binding;
-        this.mIntent=intent;
-    }
+    private static String TAG="show";
 
-    public void showGetPic(Context context,Intent intent){
+
+    public static void showGetPic(ActivityShowDetailBinding binding, Context context, Intent intent){
         String path=intent.getStringExtra("picPath");
+        Log.d(TAG, "showGetPic: "+path);
         binding.tvShowPath.setText(path);
-        Toast.makeText(context,"文件已保存在本地："+path,Toast.LENGTH_SHORT).show();
+
         Glide.with(context)
-                .asBitmap()
                 .load(path)
                 .into(binding.ivShowDetail);
     }
+
+    public void showpicPath(ActivityShowDetailBinding binding,Intent intent){
+        binding.tvShowPath.setText(intent.getStringExtra("picPath"));
+
+    }
+
+
 }
