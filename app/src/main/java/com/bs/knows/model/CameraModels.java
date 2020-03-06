@@ -43,19 +43,9 @@ public class CameraModels {
     }
 
 
-    public TakePhoto getTakePhoto() {
+    private TakePhoto getTakePhoto() {
         return takePhoto;
     }
-
-    // 压缩后图片文件存储位置
-//    private String getCompressPath() {
-//        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PictureSelector/image/";
-//        File file = new File(path);
-//        if (file.mkdirs()) {
-//            return path;
-//        }
-//        return path;
-//    }
 
 
     /**
