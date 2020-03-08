@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.bs.knows"
-        minSdkVersion 22
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -47,9 +47,10 @@ dependencies {
     implementation 'com.zhihu.android:matisse:0.5.3-beta3'
     implementation 'com.github.yalantis:ucrop:2.2.4'
     //permission
-    implementation 'me.weyye.hipermission:library:1.0.7'
-    implementation 'com.github.githubZYQ:easypermission:v1.0.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
     //takephoto
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
-//    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.4.6'
+
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 }

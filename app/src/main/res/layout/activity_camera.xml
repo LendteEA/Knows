@@ -27,44 +27,64 @@
 
         </FrameLayout>
 
+
+        <RelativeLayout
+            android:id="@+id/rv_focus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/homecamera_bottom_relative"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="-2dp"
+            android:onClick="cameraFocus">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_scan_box"
+                />
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/homecamera_bottom_relative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00ffffff"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:background="#00ffffff">
 
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
-                android:scaleType="centerInside"
-                android:layout_marginBottom="20dp"
-                android:layout_marginStart="20dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/ic_back"
-                android:onClick="@{(view)->camera.exitCamera(view)}" />
+                android:onClick="@{(view)->camera.exitCamera(view)}"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/iv_camera"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
-                android:scaleType="centerInside"
-                android:layout_marginBottom="20dp"
                 android:layout_centerInParent="true"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/ic_saomiao"
-                android:onClick="getCapture" />
+                android:onClick="getCapture"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/iv_photo_album"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:scaleType="centerInside"
-                android:layout_marginEnd="20dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_mine"
-                android:onClick="ChooserImg"/>
+                android:onClick="ChooserImg"
+                android:scaleType="centerInside" />
 
         </RelativeLayout>
 

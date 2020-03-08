@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.zyq.easypermission.EasyPermission;
-import com.zyq.easypermission.EasyPermissionResult;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.bs.knows.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bs.knows.R;
 import com.bs.knows.adapters.HistoryListAdapter;
 import com.bs.knows.adapters.funcationAdapter;
-import com.bs.knows.utils.PermissionUtils;
 import com.bs.knows.views.CridSpaceItemDecoration;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 
 //从父类BaseActivity继承一些共性的东西
@@ -30,6 +32,15 @@ public class MainActivity extends BaseActivty {
 
     private void initView() {
         initNavBar(this,false, "Knows", true);
+
+        //        PermissionUtils.Permissionx(this);
+
+        EasyPermissions.requestPermissions(this,
+                "申请权限",
+                0,
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         RecyclerView mRvGrid = fd(R.id.rv_grid);
         mRvGrid.setLayoutManager(new GridLayoutManager(this, 2));
@@ -48,17 +59,6 @@ public class MainActivity extends BaseActivty {
         mRvList.setNestedScrollingEnabled(false);
         HistoryListAdapter mListAdapter = new HistoryListAdapter(this);
         mRvList.setAdapter(mListAdapter);
-
-//        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
-//
-//        }
-//        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
-//        }
-//        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
-//        }
 
 
 

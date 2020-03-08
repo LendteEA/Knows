@@ -16,7 +16,6 @@ import com.bs.knows.databinding.ActivityShowDetailBinding;
 import com.bs.knows.databinding.NavBarBinding;
 import com.bs.knows.model.CameraModel;
 import com.bs.knows.model.showDetailModel;
-import com.bs.knows.utils.PermissionUtils;
 import com.bs.knows.viewmodel.CameraVM;
 import com.bs.knows.viewmodel.ShowDetailVM;
 import com.bumptech.glide.Glide;
@@ -32,7 +31,7 @@ public class ShowDetailActivity extends BaseActivty {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_show_detail);
         Intent intent=getIntent();
-        String path=intent.getStringExtra("picPath");
+        String path=intent.getStringExtra("picPathUri");
 
         Log.d(TAG, "onCreate: "+path);
         ShowDetailVM showDetailVM =new ShowDetailVM(binding,intent);
@@ -46,7 +45,6 @@ public class ShowDetailActivity extends BaseActivty {
 //        navBarBinding= DataBindingUtil.setContentView(this,R.layout.nav_bar);
         initNavBar(this,true, "确认图片", false);
 
-        PermissionUtils.Permissionx(this);
 
         ImageView ivBack=findViewById(R.id.iv_back);
         ivBack.setOnClickListener(new View.OnClickListener() {

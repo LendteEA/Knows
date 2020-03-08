@@ -16,7 +16,7 @@ import androidx.databinding.DataBindingUtil;
 import com.bs.knows.R;
 import com.bs.knows.databinding.ActivityCameraBinding;
 import com.bs.knows.model.CameraModels;
-import com.bs.knows.utils.PermissionUtils;
+import com.bs.knows.utils.AskPermission;
 import com.bs.knows.viewmodel.CameraVM;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
@@ -59,7 +59,6 @@ public class CameraActivity extends BaseActivty {
     }
 
     private void initView() {
-        PermissionUtils.Permissionx(this);
         //        隐藏statusBar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }

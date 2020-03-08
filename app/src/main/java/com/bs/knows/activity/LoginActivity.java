@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 
-import com.bs.knows.utils.PermissionUtils;
 import com.bs.knows.viewmodel.UserLoginVM;
 import com.bs.knows.R;
 import com.bs.knows.databinding.ActivityLoginBinding;
@@ -18,7 +17,6 @@ public class LoginActivity extends BaseActivty {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_login);
 
         ActivityLoginBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_login);

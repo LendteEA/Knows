@@ -11,6 +11,7 @@ import com.bs.knows.R;
 import com.bs.knows.activity.LoginActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.MineActivity;
+import com.bs.knows.utils.SPUtils;
 import com.bs.knows.utils.UserBean;
 
 import cn.bmob.v3.BmobUser;
@@ -33,7 +34,7 @@ public class UserUtilsModel {
      * @param phone    用户名
      * @param password 密码
      */
-    public static void userLogin(final Context context, String phone, String password) {
+    public static void userLogin(final Context context, final String phone, String password) {
         final UserBean user = new UserBean();
         if (!validateLogin(context, phone, password)) {
             return;
@@ -45,13 +46,22 @@ public class UserUtilsModel {
             @Override
             public void done(UserBean bmobuser, BmobException e) {
                 if (e == null) {
-                    Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                    //        定义Activity跳转动画
-                    ((Activity) context).overridePendingTransition(R.anim.close_enter, R.anim.close_exit);
+                    //保存用户登录标记，若失败则不可登录
+                    boolean isSave=SPUtils.saveUser(context,phone);
+                    if(!isSave){
+                        Toast.makeText(context, "系统错误！请稍后重试", Toast.LENGTH_SHORT).show();
 
+                    }else{
+                        Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                        //定义Activity跳转动画
+                        ((Activity) context).overridePendingTransition(R.anim.close_enter, R.anim.close_exit);
+
+                        //保存用户标记（手机号）
+                        UserIsLogin.getInstance().setPhone(phone);
+                    }
 
                 } else {
                     ChackReturnCode(context, e);
@@ -59,6 +69,61 @@ public class UserUtilsModel {
             }
         });
     }
+
+    //    ====================================================  用户自动登录  ====================================================
+    /**
+     * 1.用户登录
+     *      当用户登录应用程序时，利用SharedPreferences保存用户标记
+     *       用全局单例类UserIsLogin保存登录信息
+     *          在用户登录之后
+     *         在用户重新打开程序时，检测SharedPreferences是否保存标记，
+     *              如果存在则为UserIsLogin辅助，并进入主页。若不存在，则进入登录页面
+     *
+     * 2.用户退出
+     *      删除SharedPreferences中的标记，退出到登录页面
+     */
+
+    public static class UserIsLogin{
+        private static UserIsLogin instance;
+
+        private UserIsLogin(){
+
+        }
+
+        /**
+         * 验证是否存在已登录用户
+         * @return
+         */
+        public static boolean validateUserLogin(Context context){
+           return SPUtils.isLoginUser(context);
+        }
+
+        public static UserIsLogin getInstance(){
+            if(instance==null){
+                synchronized (UserIsLogin.class){
+                    if(instance==null){
+                        instance=new UserIsLogin();
+                    }
+                }
+            }
+            return instance;
+        }
+
+
+        private String phone;
+        public  void setPhone(String phone) {
+            this.phone = phone;
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     //    ======================================================  用户注册  ======================================================
 
@@ -104,17 +169,11 @@ public class UserUtilsModel {
      */
     public static void logout(Context context) {
 //        删除sp保存的用户标记
-//        boolean isRemove = SPUtils.removeUser(context);
-//
-//        if (!isRemove) {
-//            Toast.makeText(context, "系统错误，请稍后重试", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-
-//        删除数据源
-//        RealmHelper realmHelper = new RealmHelper();
-//        realmHelper.removeMusicSource();
-//        realmHelper.close();
+        boolean isRemove = SPUtils.removeUser(context);
+        if (!isRemove) {
+            Toast.makeText(context, "系统错误!请稍后重试", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Intent intent = new Intent(context, LoginActivity.class);
 //        添加intent标志符，清理task栈，并且新生成一个task栈

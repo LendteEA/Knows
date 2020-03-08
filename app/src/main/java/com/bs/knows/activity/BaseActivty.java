@@ -2,7 +2,6 @@ package com.bs.knows.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,19 +10,19 @@ import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
-import com.bs.knows.databinding.NavBarBinding;
-import com.bs.knows.model.NavBarModel;
-import com.zyq.easypermission.EasyPermissionHelper;
+import java.util.List;
+
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * 作为整个Activity的父类 描述所有Activity的共性
  */
 
 @SuppressLint("Registered")
-public class BaseActivty extends Activity {
+public class BaseActivty extends Activity implements EasyPermissions.PermissionCallbacks {
 
 
     private long exitTime = 0;
@@ -113,12 +112,64 @@ public class BaseActivty extends Activity {
     }
 
 
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        switch (requestCode){
+            case 0:
+                Toast.makeText(this, "已获取相机权限", Toast.LENGTH_SHORT).show();
+                break;
+            case 1:
+                Toast.makeText(this, "已获取文件读取权限", Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                Toast.makeText(this, "已获取文件写入权限", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        //处理权限名字字符串
+        StringBuffer sb = new StringBuffer();
+        for (String str : perms){
+            sb.append(str);
+            sb.append("\n");
+        }
+        sb.replace(sb.length() - 2,sb.length(),"");
+
+        switch (requestCode){
+            case 0:
+                Toast.makeText(this, "已拒绝Camera权限" + perms.get(0), Toast.LENGTH_SHORT).show();
+                break;
+            case 1:
+                Toast.makeText(this, "已拒绝文件读取权限", Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                Toast.makeText(this, "已拒绝文件写入权限", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            Toast.makeText(this, "已拒绝权限" + sb + "并不再询问" , Toast.LENGTH_SHORT).show();
+            new AppSettingsDialog
+                    .Builder(this)
+                    .setRationale("此功能需要" + sb + "权限，否则无法正常使用，是否打开设置")
+                    .setPositiveButton("是")
+                    .setNegativeButton("否")
+                    .build()
+                    .show();
+        }
+    }
+
+
 //    @Override
 //    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 //        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 //        //使用EasyPermissionHelper注入回调
 //        EasyPermissionHelper.getInstance().onRequestPermissionsResult(requestCode, permissions, grantResults, this);
 //    }
+
+
+    //
 
 
 

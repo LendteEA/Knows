@@ -27,10 +27,10 @@ public class UserLoginVM {
 
     public void LoginCheckUserMessage(View view){
         Context context=view.getContext();
-//        userLogin(context,
-//                mbinding.inputPhoneLogin.getInputStr(),
-//                mbinding.inputPasswordLogin.getInputStr());
-        context.startActivity(new Intent(context, MainActivity.class));
+        userLogin(context,
+                mbinding.inputPhoneLogin.getInputStr(),
+                mbinding.inputPasswordLogin.getInputStr());
+//        context.startActivity(new Intent(context, MainActivity.class));
     }
 
     public void gotoRegister(View view){

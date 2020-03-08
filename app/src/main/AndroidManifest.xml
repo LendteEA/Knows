@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.bs.knows">
     <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
@@ -31,16 +32,24 @@
             android:authorities="com.bs.knows.BmobContentProvider" />
 
         <provider
+            tools:replace="android:authorities"
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
+                tools:replace="android:resource"
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".activity.CamerasActivity" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
+
+
+
+        <activity android:name=".activity.CamerasActivity"
+            android:exported="true"/>
         <activity android:name=".activity.ShowDetailActivity" />
         <activity android:name=".activity.MineActivity" />
         <activity android:name=".activity.RegisterActivity" />
