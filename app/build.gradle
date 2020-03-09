@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    dataBinding.enabled=true
+    dataBinding.enabled = true
     buildTypes {
         release {
             minifyEnabled false
@@ -19,6 +19,7 @@ android {
         }
     }
     useLibrary 'org.apache.http.legacy'
+
 }
 
 dependencies {
@@ -51,6 +52,8 @@ dependencies {
 
     //takephoto
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
-
+    //android_image_cropper
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    //cropper
+    implementation 'com.edmodo:cropper:1.0.1'
 }

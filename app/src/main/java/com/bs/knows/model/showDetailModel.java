@@ -2,6 +2,7 @@ package com.bs.knows.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;

@@ -66,8 +66,8 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
                 fos.write(data);
                 fos.close();
 
-                Intent intent = new Intent(CamerasActivity.this, ShowDetailActivity.class);
-                intent.putExtra("picPath", tempFile.getAbsolutePath());
+                Intent intent = new Intent(CamerasActivity.this, CropImageActivity.class);
+                intent.setData(Uri.fromFile(tempFile.getAbsoluteFile()));
                 startActivity(intent);
                 CamerasActivity.this.finish();
 
@@ -135,44 +135,52 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     }
 
     public void ChooserImg(View view) {
-        Context context = view.getContext();
-        Matisse.from((Activity) context)
+        Matisse.from((Activity) view.getContext())
                 .choose(MimeType.ofImage(), false)
+                //是否只显示选择的类型的缩略图，就不会把所有图片视频都放在一起，而是需要什么展示什么
+                .showSingleMediaType(true)
+                //这两行要连用 是否在选择图片中展示照相 和适配安卓7.0 FileProvider
+//                .capture(true)
                 .countable(true)
                 .maxSelectable(1) // 图片选择的最多数量
                 .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                 .thumbnailScale(0.85f) // 缩略图的比例
                 .imageEngine(new GlideImageEngine()) // 使用的图片加载引擎
                 .forResult(0x13); // 设置作为标记的请求码
+
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 19 && resultCode == RESULT_OK) {
-
-            //图片路径 同样视频地址也是这个 根据requestCode
-            String pathList = Matisse.obtainPathResult(data).get(0);
-            CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .start(this);
-            Log.d(TAG, "onActivityResult: " + requestCode + " resultCode：" + resultCode + "  Uri" + Uri.parse(pathList));
-
-
-
+        if (requestCode==19&&resultCode==RESULT_OK){
+//            CropImage.activity(data.getData())
+////                    .setGuidelines(CropImageView.Guidelines.ON)
+//                    .setActivityTitle("选取扫描内容")
+//                    .setCropMenuCropButtonTitle("完成")
+//                    .start(this);
+            Uri path=Matisse.obtainResult(data).get(0);
+            Intent intent = new Intent(this, CropImageActivity.class);
+            Log.d(TAG, "onActivityResult: " + requestCode + " resultCode：" + resultCode + "  Uri: " + path);
+            intent.setData(Matisse.obtainResult(data).get(0));
+            startActivity(intent);
         }
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                Uri pathList = result.getUri();
-                Intent intent = new Intent(this, ShowDetailActivity.class);
-                intent.putExtra("picPathUri", pathList);
-                startActivity(intent);
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-            }
-        }
+
+//            Log.d(TAG, "onActivityResult: " + requestCode + " resultCode：" + resultCode + "  Uri: " + data.getData());
+
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            if (resultCode == RESULT_OK) {
+//                Uri pathList = result.getUri();
+//                Intent intent = new Intent(this, ShowDetailActivity.class);
+//                intent.putExtra("picPathUri", pathList);
+//                startActivity(intent);
+//            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+//                Exception error = result.getError();
+//                Log.d(TAG, "onActivityResultError: " + error);
+//            }
+//        }
 
     }
 

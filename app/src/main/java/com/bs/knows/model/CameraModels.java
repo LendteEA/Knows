@@ -57,7 +57,7 @@ public class CameraModels extends CameraActivity{
      //     */
 
 
-    public void ChooserImg(View view) {
+    public void ChooseImg(View view) {
         Context context = view.getContext();
         Matisse.from((Activity) context)
                 .choose(MimeType.ofImage(), false)

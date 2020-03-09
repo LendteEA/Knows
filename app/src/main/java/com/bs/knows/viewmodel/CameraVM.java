@@ -51,7 +51,7 @@ public class CameraVM {
     }
 
     public void goPhotoalbum(View view){
-        cameraModel.ChooserImg(view);
+        cameraModel.ChooseImg(view);
 
     }
 

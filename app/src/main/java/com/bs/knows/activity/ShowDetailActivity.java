@@ -1,6 +1,7 @@
 package com.bs.knows.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,9 +32,9 @@ public class ShowDetailActivity extends BaseActivty {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_show_detail);
         Intent intent=getIntent();
-        String path=intent.getStringExtra("picPathUri");
+        String bitmap=intent.getStringExtra("picBitmap");
 
-        Log.d(TAG, "onCreate: "+path);
+        Log.d(TAG, "onCreate: "+bitmap);
         ShowDetailVM showDetailVM =new ShowDetailVM(binding,intent);
         binding.setShowDetail(showDetailVM);
         initView();

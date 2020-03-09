@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
 import com.bs.knows.activity.CamerasActivity;
+import com.bs.knows.activity.MainActivity;
 import com.bumptech.glide.Glide;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.viewHolder>{
 
@@ -44,6 +47,9 @@ public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.view
             @Override
             public void onClick(View v) {
 
+//                CropImage.activity()
+//                        .setGuidelines(CropImageView.Guidelines.ON)
+//                        .start();
                 Intent intent = new Intent(mContext, CamerasActivity.class);
                 mContext.startActivity(intent);
             }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#999999"
+    tools:context=".activity.CropImageActivity">
+
+    <include
+        android:id="@+id/nav_crop"
+        layout="@layout/nav_bar"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/nav_crop"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_centerVertical="true">
+
+        <com.theartofdev.edmodo.cropper.CropImageView
+            android:id="@+id/cp_ImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#111111" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/crop_bottom_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/iv_rotate_right"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/ic_rotate_right"
+            android:onClick="rotateImageRight"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/iv_crop_done"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_saomiao"
+            android:onClick="getCropImage"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/iv_rotate_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_rotate_left"
+            android:onClick="rotateImageLeft"
+            android:scaleType="centerInside" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

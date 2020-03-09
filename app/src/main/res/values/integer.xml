@@ -3,5 +3,7 @@
     <integer name="anim_duration">200</integer>
     <integer name="play_music_anim_duration">10000</integer>
     <integer name="play_needle_anim_duration">600</integer>
+<!--    旋转180-->
+    <integer name="rotate180">100</integer>
 
 </resources>
