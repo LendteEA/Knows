@@ -19,7 +19,7 @@
 
 
         <TextView
-            android:id="@+id/tv_showPath"
+            android:id="@+id/tv_showDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -28,10 +28,14 @@
 
         <ImageView
             android:id="@+id/iv_showDetail"
-            android:scaleType="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="500dp"
+            android:scaleType="center" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OCR"
+            android:onClick="OCR"/>
 
     </LinearLayout>
 </layout>

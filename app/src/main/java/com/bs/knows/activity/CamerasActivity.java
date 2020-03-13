@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
@@ -22,10 +23,14 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
+import com.baidu.ocr.ui.camera.CameraActivity;
 import com.bs.knows.R;
 import com.bs.knows.databinding.ActivityCameraBinding;
+import com.bs.knows.utils.CameraPreview;
+import com.bs.knows.utils.FileUtil;
 import com.bs.knows.utils.GlideImageEngine;
 
+import com.bs.knows.utils.ImageUtils;
 import com.bs.knows.viewmodel.CameraVM;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -34,6 +39,7 @@ import com.zhihu.matisse.MimeType;
 
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -47,10 +53,12 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     private SurfaceView mSurfaceView;
     private SurfaceHolder mSurfaceHolder;
     private ActivityCameraBinding binding;
+
     private static String TAG = "error";
     private Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
+
             File filepath = new File("/sdcard/DCIM/Knows");
             File tempFile = new File(filepath + "/Knows" + System.currentTimeMillis() + ".jpg");
             if (!filepath.exists()) {
@@ -62,9 +70,16 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
                 }
             }
             try {
+
+                Bitmap bitmap=BitmapFactory.decodeByteArray(data,0,data.length);
+                Bitmap saveBitmap;
+
+
                 FileOutputStream fos = new FileOutputStream(tempFile);
                 fos.write(data);
                 fos.close();
+                //图片旋转
+                ImageUtils.setPictureDegreeZero(String.valueOf(tempFile));
 
                 Intent intent = new Intent(CamerasActivity.this, CropImageActivity.class);
                 intent.setData(Uri.fromFile(tempFile.getAbsoluteFile()));
@@ -121,9 +136,10 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
 
     public void getCapture(final View view) {
         Camera.Parameters parameters = mCamera.getParameters();
-        parameters.setPictureFormat(PixelFormat.JPEG);
+        parameters.setPictureFormat(ImageFormat.JPEG);
         parameters.setPictureSize(1080, 1920);
         parameters.setFocusMode(Camera.Parameters.FLASH_MODE_AUTO);
+
         mCamera.autoFocus(new Camera.AutoFocusCallback() {
             @Override
             public void onAutoFocus(boolean success, Camera camera) {
@@ -154,33 +170,16 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==19&&resultCode==RESULT_OK){
-//            CropImage.activity(data.getData())
-////                    .setGuidelines(CropImageView.Guidelines.ON)
-//                    .setActivityTitle("选取扫描内容")
-//                    .setCropMenuCropButtonTitle("完成")
-//                    .start(this);
-            Uri path=Matisse.obtainResult(data).get(0);
+
+
+        if (requestCode == 19 && resultCode == RESULT_OK) {
+            Uri path = Matisse.obtainResult(data).get(0);
             Intent intent = new Intent(this, CropImageActivity.class);
-            Log.d(TAG, "onActivityResult: " + requestCode + " resultCode：" + resultCode + "  Uri: " + path);
+
             intent.setData(Matisse.obtainResult(data).get(0));
             startActivity(intent);
         }
 
-//            Log.d(TAG, "onActivityResult: " + requestCode + " resultCode：" + resultCode + "  Uri: " + data.getData());
-
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//            if (resultCode == RESULT_OK) {
-//                Uri pathList = result.getUri();
-//                Intent intent = new Intent(this, ShowDetailActivity.class);
-//                intent.putExtra("picPathUri", pathList);
-//                startActivity(intent);
-//            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-//                Exception error = result.getError();
-//                Log.d(TAG, "onActivityResultError: " + error);
-//            }
-//        }
 
     }
 
@@ -232,19 +231,21 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
      * 开始显示实时图像
      */
     private void setStartPreview(Camera camera, SurfaceHolder holder) throws IOException {
+        if (holder == null) {
+            holder = mSurfaceHolder;
+        }
         try {
-            if (holder == null) {
-                holder = mSurfaceHolder;
-            }
             Log.d(TAG, "setStartPreview: " + holder);
             camera.setPreviewDisplay(holder);
             //预览角度进行调整
             camera.setDisplayOrientation(90);
             camera.startPreview();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // CameraPreview cameraPreview=new CameraPreview(this,camera);
+
     }
 
     /**

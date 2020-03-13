@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.baidu.ocr.ui.camera.CameraActivity;
 import com.bs.knows.R;
 import com.bs.knows.activity.CamerasActivity;
 import com.bs.knows.activity.MainActivity;
@@ -19,10 +20,10 @@ import com.bumptech.glide.Glide;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.viewHolder>{
+public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.viewHolder> {
 
     private Context mContext;
-    private String TAG="Main";
+    private String TAG = "Main";
 
     public funcationAdapter(Context context) {
         mContext = context;
@@ -51,6 +52,7 @@ public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.view
 //                        .setGuidelines(CropImageView.Guidelines.ON)
 //                        .start();
                 Intent intent = new Intent(mContext, CamerasActivity.class);
+//                Intent intent = new Intent(mContext, CameraActivity.class); //百度camera
                 mContext.startActivity(intent);
             }
         });
@@ -67,7 +69,7 @@ public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.view
         View itemView;
         TextView mTvPlayNum;
 
-         viewHolder(@NonNull View itemView) {
+        viewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.itemView = itemView;
@@ -77,7 +79,6 @@ public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.view
 
 
     }
-
 
 
 }

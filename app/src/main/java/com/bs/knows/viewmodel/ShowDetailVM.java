@@ -22,7 +22,7 @@ public class ShowDetailVM {
 
     public void getPic(View view){
 
-        showDetailModel.showGetPic(binding,view.getContext(),mIntent);
+        showDetailModel.showGetPic(mIntent);
     }
 
     public void getPicPath(View view){
