@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
-import com.bs.knows.activity.CameraActivity;
 import com.bs.knows.activity.CamerasActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bumptech.glide.Glide;
@@ -48,11 +47,7 @@ public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.view
             @Override
             public void onClick(View v) {
 
-//                CropImage.activity()
-//                        .setGuidelines(CropImageView.Guidelines.ON)
-//                        .start();
                 Intent intent = new Intent(mContext, CamerasActivity.class);
-//                Intent intent = new Intent(mContext, CameraActivity.class); //百度camera
                 mContext.startActivity(intent);
             }
         });

@@ -15,10 +15,9 @@ import android.view.TextureView;
 import android.view.View;
 
 import com.bs.knows.R;
-import com.bs.knows.activity.CameraActivity;
+import com.bs.knows.activity.CamerasActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.ShowDetailActivity;
-import com.bs.knows.utils.CameraRequest;
 import com.bs.knows.utils.GlideImageEngine;
 import com.jph.takephoto.app.TakePhoto;
 import com.yalantis.ucrop.UCrop;
@@ -28,7 +27,7 @@ import com.zhihu.matisse.MimeType;
 
 import java.io.File;
 
-public class CameraModels extends CameraActivity{
+public class CameraModels extends CamerasActivity {
 
     private TakePhoto takePhoto;
     private Uri imageUri;

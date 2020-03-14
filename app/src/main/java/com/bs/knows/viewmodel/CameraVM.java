@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.view.SurfaceHolder;
 import android.view.View;
 
-import com.bs.knows.activity.CameraActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bs.knows.databinding.ActivityCameraBinding;
 import com.bs.knows.model.CameraModels;

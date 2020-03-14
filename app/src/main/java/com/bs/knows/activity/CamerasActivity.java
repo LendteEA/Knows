@@ -30,11 +30,10 @@ import com.bs.knows.R;
 import com.bs.knows.camera.BitmapUtils;
 import com.bs.knows.camera.CameraUtils;
 import com.bs.knows.databinding.ActivityCameraBinding;
-import com.bs.knows.utils.CameraPreview;
+
 import com.bs.knows.utils.FileUtil;
 import com.bs.knows.utils.GlideImageEngine;
 
-import com.bs.knows.utils.ImageUtils;
 import com.bs.knows.viewmodel.CameraVM;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
