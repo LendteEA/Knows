@@ -14,7 +14,9 @@ import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -25,6 +27,8 @@ import androidx.databinding.DataBindingUtil;
 
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.bs.knows.R;
+import com.bs.knows.camera.BitmapUtils;
+import com.bs.knows.camera.CameraUtils;
 import com.bs.knows.databinding.ActivityCameraBinding;
 import com.bs.knows.utils.CameraPreview;
 import com.bs.knows.utils.FileUtil;
@@ -43,6 +47,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
@@ -50,6 +55,10 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callback {
 
     private Camera mCamera;
+    private CameraUtils cameraInstance;
+    private int screenWidth;
+    private int screenHeight;
+
     private SurfaceView mSurfaceView;
     private SurfaceHolder mSurfaceHolder;
     private ActivityCameraBinding binding;
@@ -60,7 +69,7 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
         public void onPictureTaken(byte[] data, Camera camera) {
 
             File filepath = new File("/sdcard/DCIM/Knows");
-            File tempFile = new File(filepath + "/Knows" + System.currentTimeMillis() + ".jpg");
+            File tempFile = new File(filepath + "/Knows" + System.currentTimeMillis() + ".jpeg");
             if (!filepath.exists()) {
                 try {
                     //按照指定的路径创建文件夹
@@ -69,29 +78,29 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
                     // TODO: handle exception
                 }
             }
-            try {
 
-                Bitmap bitmap=BitmapFactory.decodeByteArray(data,0,data.length);
-                Bitmap saveBitmap;
+            Bitmap bitmap=BitmapFactory.decodeByteArray(data,0,data.length);
+            Bitmap saveBitmap=cameraInstance.setTakePicktrueOrientation(0,bitmap);
+            saveBitmap=Bitmap.createScaledBitmap(saveBitmap,screenWidth,screenHeight,true);
 
-
-                FileOutputStream fos = new FileOutputStream(tempFile);
-                fos.write(data);
-                fos.close();
-                //图片旋转
-                ImageUtils.setPictureDegreeZero(String.valueOf(tempFile));
-
-                Intent intent = new Intent(CamerasActivity.this, CropImageActivity.class);
-                intent.setData(Uri.fromFile(tempFile.getAbsoluteFile()));
-                startActivity(intent);
-                CamerasActivity.this.finish();
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException er) {
-                Log.d(TAG, "onPictureTaken: " + er);
-                er.printStackTrace();
+            BitmapUtils.saveJPGE_After(getApplicationContext(),saveBitmap, String.valueOf(tempFile),100);
+            if (!bitmap.isRecycled()) {
+                bitmap.recycle();
             }
+            if (!saveBitmap.isRecycled()) {
+                saveBitmap.recycle();
+            }
+
+//                FileOutputStream fos = new FileOutputStream(tempFile);
+//                fos.write(data);
+//                fos.close();
+//                //图片旋转
+//                ImageUtils.setPictureDegreeZero(String.valueOf(tempFile));
+            Intent intent = new Intent(CamerasActivity.this, CropImageActivity.class);
+            intent.setData(Uri.fromFile(tempFile.getAbsoluteFile()));
+            startActivity(intent);
+            CamerasActivity.this.finish();
+
         }
     };
 
@@ -113,12 +122,17 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(this);
 
+        //camera工具类初始化
+        cameraInstance=CameraUtils.getInstance();
+        DisplayMetrics dm=getResources().getDisplayMetrics();
+        screenWidth=dm.widthPixels;
+        screenHeight=dm.heightPixels;
+
+
         EasyPermissions.requestPermissions(this,
                 "申请权限",
                 0,
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                Manifest.permission.CAMERA);
 
         //        隐藏statusBar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -135,11 +149,12 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     }
 
     public void getCapture(final View view) {
-        Camera.Parameters parameters = mCamera.getParameters();
-        parameters.setPictureFormat(ImageFormat.JPEG);
-        parameters.setPictureSize(1080, 1920);
-        parameters.setFocusMode(Camera.Parameters.FLASH_MODE_AUTO);
-
+//        Camera.Parameters parameters = mCamera.getParameters();
+//        parameters.setPictureFormat(ImageFormat.JPEG);
+//        parameters.setPictureSize(screenWidth, screenHeight);
+//        parameters.setFocusMode(Camera.Parameters.FLASH_MODE_AUTO);
+//        parameters.setJpegQuality(100);
+//        parameters.setRotation(90);
         mCamera.autoFocus(new Camera.AutoFocusCallback() {
             @Override
             public void onAutoFocus(boolean success, Camera camera) {
@@ -173,9 +188,7 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
 
 
         if (requestCode == 19 && resultCode == RESULT_OK) {
-            Uri path = Matisse.obtainResult(data).get(0);
             Intent intent = new Intent(this, CropImageActivity.class);
-
             intent.setData(Matisse.obtainResult(data).get(0));
             startActivity(intent);
         }
@@ -235,7 +248,36 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
             holder = mSurfaceHolder;
         }
         try {
+            int PreviewWidth = 0;
+            int PreviewHeight = 0;
+            WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);//获取窗口的管理器
+            Display display = wm.getDefaultDisplay();//获得窗口里面的屏幕
+            Camera.Parameters parameters  = mCamera.getParameters();
+            // 选择合适的预览尺寸
+            List<Camera.Size> sizeList = parameters.getSupportedPreviewSizes();
+
+            // 如果sizeList只有一个我们也没有必要做什么了，因为就他一个别无选择
+            if (sizeList.size() > 1) {
+                Iterator<Camera.Size> itor = sizeList.iterator();
+                while (itor.hasNext()) {
+                    Camera.Size cur = itor.next();
+                    if (cur.width >= PreviewWidth
+                            && cur.height >= PreviewHeight) {
+                        PreviewWidth = cur.width;
+                        PreviewHeight = cur.height;
+                        break;
+                    }
+                }
+            }
+            parameters.setPreviewSize(PreviewWidth, PreviewHeight); //获得摄像区域的大小
+            parameters.setPreviewFrameRate(60);//每秒60帧  每秒从摄像头里面获得60个画面
+            parameters.setPictureFormat(ImageFormat.JPEG);//设置照片输出的格式
+            parameters.set("jpeg-quality", 100);//设置照片质量
+            parameters.setPictureSize(PreviewWidth, PreviewHeight);//设置拍出来的屏幕大小
+            parameters.setFocusMode(Camera.Parameters.FLASH_MODE_AUTO);
+//            parameters.setRotation(90);
             Log.d(TAG, "setStartPreview: " + holder);
+            camera.setParameters(parameters);
             camera.setPreviewDisplay(holder);
             //预览角度进行调整
             camera.setDisplayOrientation(90);
@@ -244,9 +286,10 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
             e.printStackTrace();
         }
 
-        // CameraPreview cameraPreview=new CameraPreview(this,camera);
+
 
     }
+
 
     /**
      * 释放相机资源

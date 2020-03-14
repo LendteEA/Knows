@@ -12,8 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.baidu.ocr.ui.camera.CameraActivity;
 import com.bs.knows.R;
+import com.bs.knows.activity.CameraActivity;
 import com.bs.knows.activity.CamerasActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bumptech.glide.Glide;
