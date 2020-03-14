@@ -65,12 +65,16 @@ public class CropImageActivity extends BaseActivty {
         Log.d(TAG, "initView Bitmap: "+bitmap);
         File filePath=FileUtil.savebitmap(this,bitmap, StaticUtils.IMAGE_NAME);
 
+        Intent intent=new Intent(CropImageActivity.this,ShowDetailActivity.class);
+        intent.putExtra("picPaths",String.valueOf(filePath));
+        startActivity(intent);
+
         RecoginzeService.recAccurateBasic(this, filePath, new RecoginzeService.ServiceListener() {
             @Override
             public void onResult(String result) {
-                Intent intent=new Intent(CropImageActivity.this,ShowDetailActivity.class);
-                intent.putExtra("picDetail",result);
-                startActivity(intent);
+//                Intent intent=new Intent(CropImageActivity.this,ShowDetailActivity.class);
+//                intent.putExtra("picDetail",result);
+//                startActivity(intent);
             }
         });
 

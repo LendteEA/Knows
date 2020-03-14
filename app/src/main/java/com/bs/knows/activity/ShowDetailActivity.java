@@ -21,7 +21,6 @@ import com.baidu.ocr.sdk.model.GeneralResult;
 import com.bs.knows.R;
 import com.bs.knows.databinding.ActivityShowDetailBinding;
 import com.bs.knows.databinding.NavBarBinding;
-import com.bs.knows.model.CameraModel;
 import com.bs.knows.model.showDetailModel;
 import com.bs.knows.utils.FileUtil;
 import com.bs.knows.utils.RecoginzeService;
@@ -50,16 +49,13 @@ public class ShowDetailActivity extends BaseActivty {
         String picDetail;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_show_detail);
         Intent intent = getIntent();
-        picDetail = intent.getStringExtra("picDetail");
-
-        Log.d(TAG, "onCreate: " + picDetail);
 
 
-//        ShowDetailVM showDetailVM = new ShowDetailVM(binding, intent);
-//        binding.setShowDetail(showDetailVM);
-        binding.tvShowDetail.setText(picDetail);
+        ShowDetailVM showDetailVM = new ShowDetailVM(this,binding, intent);
+        binding.setShowDetail(showDetailVM);
+        binding.tvShowDetail.setText(intent.getStringExtra("picPaths"));
         initView();
-//        showDetailModel.showGetPic(intent);
+        showDetailVM.getPic();
 
     }
 

@@ -11,21 +11,18 @@ import com.bs.knows.model.showDetailModel;
 public class ShowDetailVM {
 
     private Intent mIntent;
-    private NavBarBinding navBarBinding;
-    private ActivityShowDetailBinding binding;
-    private showDetailModel showDetailModel;
+    private Context mContext;
+    private ActivityShowDetailBinding mBinding;
 
-    public ShowDetailVM(ActivityShowDetailBinding binding, Intent intent) {
-        this.binding = binding;
+    public ShowDetailVM(Context context,ActivityShowDetailBinding binding, Intent intent) {
+        this.mBinding = binding;
         this.mIntent=intent;
+        this.mContext=context;
     }
 
-    public void getPic(View view){
+    public void getPic(){
 
-        showDetailModel.showGetPic(mIntent);
+        showDetailModel.showGetPic(mContext,mBinding,mIntent);
     }
 
-    public void getPicPath(View view){
-        showDetailModel.showpicPath(binding,mIntent);
-    }
 }

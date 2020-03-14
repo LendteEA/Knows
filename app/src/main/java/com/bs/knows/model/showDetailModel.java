@@ -33,17 +33,10 @@ public class showDetailModel {
 
 
     private static String TAG = "show";
-    private static Context context;
-    private boolean hasGotToken = false;
-    private static ActivityShowDetailBinding binding;
 
-    public showDetailModel(Context context, ActivityShowDetailBinding binding) {
-        showDetailModel.context = context;
-        showDetailModel.binding = binding;
-    }
 
-    public static void showGetPic(Intent intent) {
-        String path = intent.getStringExtra("picPath");
+    public static void showGetPic(Context context,ActivityShowDetailBinding binding,Intent intent) {
+        String path = intent.getStringExtra("picPaths");
         Log.d(TAG, "showGetPic: " + path);
         binding.tvShowDetail.setText(path);
 
@@ -52,10 +45,6 @@ public class showDetailModel {
                 .into(binding.ivShowDetail);
     }
 
-    public void showpicPath(ActivityShowDetailBinding binding, Intent intent) {
-        binding.tvShowDetail.setText(intent.getStringExtra("picPath"));
-
-    }
 
     public String bitmapToString(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
