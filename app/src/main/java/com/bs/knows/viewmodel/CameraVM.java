@@ -13,8 +13,6 @@ import com.bs.knows.model.CameraModels;
 
 public class CameraVM {
 
-
-//    private Camera camera;
     private static String TAG = "error";
     private Camera mCamera;
     private Uri mUri;
