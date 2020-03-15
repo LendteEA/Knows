@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
 
-import java.util.List;
-
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.viewHolder> {
 
     private Context mContext;

@@ -19,6 +19,6 @@ public class ChangePasswordActivity extends BaseActivty {
         UserUpdatePasswordVM updatePasswordViewModel=new UserUpdatePasswordVM(binding);
         binding.setUserupdatepassword(updatePasswordViewModel);
 
-        initNavBar(this,true, "修改密码", false);
+        initNavBar(true, "修改密码", false);
     }
 }

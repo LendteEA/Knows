@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 页面边距 -->
-    <dimen name="marginSize">12dp</dimen>
+    <dimen name="marginSize">12sp</dimen>
     <!-- navBar高度 -->
-    <dimen name="navbarHeight">56dp</dimen>
+    <dimen name="navbarHeight">56sp</dimen>
     <!-- 输入框高度 -->
-    <dimen name="inputViewHeight">44dp</dimen>
+    <dimen name="inputViewHeight">44sp</dimen>
     <!-- 按钮高度 -->
-    <dimen name="btnHeight">44dp</dimen>
+    <dimen name="btnHeight">44sp</dimen>
 
 
     <!-- 标题字体大小 -->
-    <dimen name="navBarTitleSize">22dp</dimen>
+    <dimen name="navBarTitleSize">22sp</dimen>
     <!-- 提示字体大小 -->
-    <dimen name="titleSize">18dp</dimen>
+    <dimen name="titleSize">18sp</dimen>
     <!-- 密码提示字体大小 -->
-    <dimen name="infoSize">14dp</dimen>
+    <dimen name="infoSize">14sp</dimen>
 
     <!-- 按钮边角弧度 -->
-    <dimen name="radius">5dp</dimen>
+    <dimen name="radius">10sp</dimen>
 
 
 
-    <dimen name="itemHeight">44dp</dimen>
-    <dimen name="marginTabSize">4dp</dimen>
-    <dimen name="albumMarginSize">4dp</dimen>
-    <dimen name="playNumImgSize">18dp</dimen>
-    <dimen name="itemIconSize">56dp</dimen>
-    <dimen name="itemPlaySize">36dp</dimen>
-    <dimen name="discTopSize">90dp</dimen>
-    <dimen name="playMusicIconSize">210dp</dimen>
+    <dimen name="itemHeight">44sp</dimen>
+    <dimen name="marginTabSize">4sp</dimen>
+    <dimen name="albumMarginSize">4sp</dimen>
+    <dimen name="playNumImgSize">30sp</dimen>
+    <dimen name="itemIconSize">56sp</dimen>
+    <dimen name="itemPlaySize">36sp</dimen>
+    <dimen name="discTopSize">90sp</dimen>
+    <dimen name="playMusicIconSize">210sp</dimen>
 
-    <dimen name="grid_expected_size">120dp</dimen>
-    <dimen name="item_margin_horizontal">24dp</dimen>
-    <dimen name="item_margin_vertical">8dp</dimen>
+    <dimen name="grid_expected_size">120sp</dimen>
+    <dimen name="item_margin_horizontal">24sp</dimen>
+    <dimen name="item_margin_vertical">8sp</dimen>
 </resources>
 

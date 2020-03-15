@@ -1,27 +1,18 @@
 package com.bs.knows.model;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
 import android.net.Uri;
-import android.os.Environment;
-import android.os.Parcelable;
-import android.provider.Settings;
-import android.util.Log;
-import android.view.TextureView;
 import android.view.View;
 
-import com.bs.knows.R;
 import com.bs.knows.activity.CamerasActivity;
-import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.ShowDetailActivity;
 import com.bs.knows.utils.GlideImageEngine;
+import com.bs.knows.utils.StaticUtils;
 import com.jph.takephoto.app.TakePhoto;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.UCropActivity;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 
@@ -35,17 +26,12 @@ public class CameraModels extends CamerasActivity {
 
 
     public void getPic(Context context){
-        takePhoto=getTakePhoto();
-        File tempFile = new File("/sdcard/Knows/Knows"+ System.currentTimeMillis()+".jpg");
+        File tempFile = new File(StaticUtils.FILE_PATH + System.currentTimeMillis()+".jpg");
         takePhoto.onPickFromCapture(Uri.fromFile(tempFile));
         Intent intent=new Intent(context, ShowDetailActivity.class);
         intent.putExtra("picPath",imageUri);
         context.startActivity(intent);
 
-    }
-
-    private TakePhoto getTakePhoto() {
-        return takePhoto;
     }
 
 

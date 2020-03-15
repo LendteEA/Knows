@@ -6,25 +6,27 @@
     android:orientation="horizontal"
     android:padding="@dimen/marginSize"
     android:background="@drawable/commit_item_select">
+
     <ImageView
         android:id="@+id/iv_icon_list"
         android:layout_width="@dimen/itemIconSize"
         android:layout_height="@dimen/itemIconSize"
-        android:src="@mipmap/b1"/>
+        android:contentDescription="@string/todo"
+        android:src="@mipmap/b1" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_marginLeft="@dimen/marginSize">
+        android:layout_marginStart="@dimen/marginSize">
 
         <TextView
             android:id="@+id/tv_name_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="音乐名称"
+            android:text="@string/file_name"
             android:textColor="@color/titleColor"
             android:textSize="@dimen/titleSize"
             android:textStyle="bold"/>
@@ -35,7 +37,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/infoColor"
             android:textSize="@dimen/infoSize"
-            android:text="作者"/>
+            android:text="@string/file_date"/>
 
 
     </LinearLayout>
@@ -44,9 +46,10 @@
     <ImageView
         android:layout_width="@dimen/itemPlaySize"
         android:layout_height="@dimen/itemPlaySize"
-        android:src="@drawable/ic_back"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/marginSize"/>
+        android:layout_marginStart="@dimen/marginSize"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_back" />
 
 
 </LinearLayout>

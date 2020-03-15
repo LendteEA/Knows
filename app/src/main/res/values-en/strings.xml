@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Knows</string>
+    <string name="Register">Register</string>
+    <string name="permission_read_sdcard">read SDcard</string>
+    <string name="hint_register">No account? Register now!</string>
+    <string name="title">Title</string>
+</resources>

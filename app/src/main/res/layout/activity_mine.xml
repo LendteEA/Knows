@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="用户名："
+            android:text="@string/userName"
             android:textSize="@dimen/titleSize"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/marginSize" />
@@ -31,18 +31,20 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/itemHeight"
             android:layout_marginTop="@dimen/marginSize"
-            android:text="修改密码"
+            android:text="@string/updatePassword"
             android:textSize="@dimen/infoSize"
-            android:paddingLeft="@dimen/marginSize"
+            android:paddingStart="@dimen/marginSize"
+            android:paddingEnd="@dimen/marginSize"
             android:gravity="center_vertical"
             android:onClick="@{userDetail.gotoUpdatePassword}"
             android:background="@drawable/commit_item_select" />
 
         <Button
             style="@style/commintButton"
-            android:text="退出登录"
             android:layout_marginTop="@dimen/marginSize"
-            android:onClick="@{userDetail.userLogout}" />
+            android:layout_marginBottom="@dimen/marginSize"
+            android:onClick="@{userDetail.userLogout}"
+            android:text="@string/logout" />
 
 
     </LinearLayout>

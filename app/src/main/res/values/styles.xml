@@ -39,6 +39,7 @@
         <item name="android:background">@color/lineColor</item>
         <item name="android:layout_margin">@dimen/marginSize</item>
     </style>
+
     <!--  登录按钮样式  -->
     <style name="commintButton">
         <item name="android:layout_width">match_parent</item>
@@ -49,6 +50,11 @@
         <item name="android:layout_marginRight">@dimen/marginSize</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/commit_btn_select</item>
+
+    </style>
+
+    <style name="functionStyle">
+        <item name="android:background">@drawable/commit_function_select</item>
 
     </style>
 

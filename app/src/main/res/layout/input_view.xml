@@ -11,16 +11,18 @@
         android:id="@+id/iv_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_phone"/>
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_phone" />
 
     <EditText
         android:id="@+id/et_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:autofillHints=""
         android:background="@null"
-        android:hint="用户名"
-        android:paddingRight="@dimen/marginSize"
+        android:hint="@string/hint_username"
+        android:inputType="number"
         android:paddingLeft="@dimen/marginSize"
-        android:textSize="@dimen/titleSize"
-        />
+        android:paddingRight="@dimen/marginSize"
+        android:textSize="@dimen/titleSize" />
 </LinearLayout>

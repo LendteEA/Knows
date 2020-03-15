@@ -21,7 +21,6 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class UserUtilsModel {
 
-    private static boolean Success = false;
     private static String TAG = "error";
 
 
@@ -92,7 +91,7 @@ public class UserUtilsModel {
 
         /**
          * 验证是否存在已登录用户
-         * @return
+         * @return  返回标识符
          */
         public static boolean validateUserLogin(Context context){
            return SPUtils.isLoginUser(context);
@@ -245,7 +244,7 @@ public class UserUtilsModel {
      * @param password UserPassword
      * @return boolean
      */
-    public static boolean validateLogin(Context context, String phone, String password) {
+    private static boolean validateLogin(Context context, String phone, String password) {
 //        简单的
 //        RegexUtils.isMobileSimple(phone);
 //        精确地
@@ -271,7 +270,7 @@ public class UserUtilsModel {
      * @param repassword UserRePassword
      * @return boolean
      */
-    public static boolean validateRegister(Context context, String phone, String password, String repassword) {
+    private static boolean validateRegister(Context context, String phone, String password, String repassword) {
 //        简单的
 //        RegexUtils.isMobileSimple(phone);
 //        精确地
@@ -305,7 +304,7 @@ public class UserUtilsModel {
      * @param new_repassword 重新输入新密码
      * @return boolean
      */
-    public static boolean validateUpdatePassword(Context context, String old_password, String new_password, String new_repassword) {
+    private static boolean validateUpdatePassword(Context context, String old_password, String new_password, String new_repassword) {
 //        简单的
 //        RegexUtils.isMobileSimple(phone);
 //        精确地

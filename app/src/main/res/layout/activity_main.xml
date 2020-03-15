@@ -1,87 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/nav_bar"/>
+    <data>
+        <variable
+            name="mainActivity"
+            type="com.bs.knows.viewmodel.MainActivityVM" />
+    </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.MainActivity">
 
-        <LinearLayout
+        <include layout="@layout/nav_bar" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/marginSize"
-                android:layout_marginLeft="@dimen/marginSize"
-                android:layout_marginBottom="@dimen/marginSize">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <View
-                    android:layout_width="4dp"
-                    android:layout_height="22dp"
-                    android:background="@color/mainColor"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/iv_function"
+                    style="@style/functionStyle"
+                    android:layout_width="@dimen/dp_200"
+                    android:layout_height="@dimen/dp_200"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:onClick="@{mainActivity.startScans}"
+                    android:background="@drawable/ic_functionbackground" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="功能列表"
-                    android:textColor="@color/titleColor"
-                    android:textSize="@dimen/titleSize"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/marginTabSize"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_margin="@dimen/marginSize">
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="22dp"
+                        android:background="@color/mainColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="最热音乐"
+                        android:textColor="@color/titleColor"
+                        android:textSize="@dimen/titleSize"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="@dimen/marginTabSize" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_grid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+
+        </ScrollView>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_margin="@dimen/marginSize">
-
-                <View
-                    android:layout_width="4dp"
-                    android:layout_height="22dp"
-                    android:background="@color/mainColor"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="最热音乐"
-                    android:textColor="@color/titleColor"
-                    android:textSize="@dimen/titleSize"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/marginTabSize"/>
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-
-    </ScrollView>
-
-
-</LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,15 +1,14 @@
 package com.bs.knows.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
-import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,26 +24,20 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
-import com.baidu.ocr.ui.camera.CameraActivity;
 import com.bs.knows.R;
 import com.bs.knows.camera.BitmapUtils;
 import com.bs.knows.camera.CameraUtils;
 import com.bs.knows.databinding.ActivityCameraBinding;
 
-import com.bs.knows.utils.FileUtil;
 import com.bs.knows.utils.GlideImageEngine;
 
+import com.bs.knows.utils.StaticUtils;
 import com.bs.knows.viewmodel.CameraVM;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -58,7 +51,6 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     private int screenWidth;
     private int screenHeight;
 
-    private SurfaceView mSurfaceView;
     private SurfaceHolder mSurfaceHolder;
     private ActivityCameraBinding binding;
 
@@ -67,7 +59,8 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
-            File filepath = new File("/sdcard/DCIM/Knows");
+            @SuppressLint("SdCardPath")
+            File filepath = new File(StaticUtils.FILE_PATH);
             File tempFile = new File(filepath + "/Knows" + System.currentTimeMillis() + ".jpeg");
             if (!filepath.exists()) {
                 try {
@@ -89,16 +82,9 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
             if (!saveBitmap.isRecycled()) {
                 saveBitmap.recycle();
             }
-
-//                FileOutputStream fos = new FileOutputStream(tempFile);
-//                fos.write(data);
-//                fos.close();
-//                //图片旋转
-//                ImageUtils.setPictureDegreeZero(String.valueOf(tempFile));
             Intent intent = new Intent(CamerasActivity.this, CropImageActivity.class);
             intent.setData(Uri.fromFile(tempFile.getAbsoluteFile()));
             startActivity(intent);
-            CamerasActivity.this.finish();
 
         }
     };
@@ -108,16 +94,15 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_camera);
-        CameraVM cameraVM = new CameraVM(binding, mSurfaceHolder);
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_camera);
+        CameraVM cameraVM=new CameraVM(binding,mSurfaceHolder);
         binding.setCamera(cameraVM);
 
         initView();
     }
 
     private void initView() {
-        mSurfaceView = binding.svPreview;
+        SurfaceView mSurfaceView = binding.svPreview;
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(this);
 
@@ -148,12 +133,6 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     }
 
     public void getCapture(final View view) {
-//        Camera.Parameters parameters = mCamera.getParameters();
-//        parameters.setPictureFormat(ImageFormat.JPEG);
-//        parameters.setPictureSize(screenWidth, screenHeight);
-//        parameters.setFocusMode(Camera.Parameters.FLASH_MODE_AUTO);
-//        parameters.setJpegQuality(100);
-//        parameters.setRotation(90);
         mCamera.autoFocus(new Camera.AutoFocusCallback() {
             @Override
             public void onAutoFocus(boolean success, Camera camera) {
@@ -184,8 +163,6 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
         if (requestCode == 19 && resultCode == RESULT_OK) {
             Intent intent = new Intent(this, CropImageActivity.class);
             intent.setData(Matisse.obtainResult(data).get(0));
@@ -250,7 +227,7 @@ public class CamerasActivity extends BaseActivty implements SurfaceHolder.Callba
             int PreviewWidth = 0;
             int PreviewHeight = 0;
             WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);//获取窗口的管理器
-            Display display = wm.getDefaultDisplay();//获得窗口里面的屏幕
+//            Display display = wm.getDefaultDisplay();//获得窗口里面的屏幕
             Camera.Parameters parameters  = mCamera.getParameters();
             // 选择合适的预览尺寸
             List<Camera.Size> sizeList = parameters.getSupportedPreviewSizes();

@@ -51,8 +51,8 @@ public class AutoFitTextureView extends TextureView {
 
     /**
      * 视频宽度适配
-     * @param width
-     * @param height
+     * @param width     宽
+     * @param height    高
      */
     public void setVideoAspectRatio(int width, int height)
     {

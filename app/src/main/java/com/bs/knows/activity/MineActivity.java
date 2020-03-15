@@ -20,14 +20,14 @@ public class MineActivity extends BaseActivty {
 
         ActivityMineBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_mine);
-        UserMineVM userMineVM =new UserMineVM(binding);
+        UserMineVM userMineVM =new UserMineVM();
         binding.setUserDetail(userMineVM);
 
         initView();
     }
 
     private void initView() {
-        initNavBar(this,true, "我的", false);
+        initNavBar(true, "我的", false);
         ImageView mBack = findViewById(R.id.iv_back);
 
         mBack.setOnClickListener(new View.OnClickListener() {

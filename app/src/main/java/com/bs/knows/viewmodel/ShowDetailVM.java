@@ -1,11 +1,9 @@
 package com.bs.knows.viewmodel;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.View;
+import android.content.Intent;;
 
 import com.bs.knows.databinding.ActivityShowDetailBinding;
-import com.bs.knows.databinding.NavBarBinding;
 import com.bs.knows.model.showDetailModel;
 
 public class ShowDetailVM {

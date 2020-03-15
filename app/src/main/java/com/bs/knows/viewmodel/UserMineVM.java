@@ -6,17 +6,10 @@ import android.view.View;
 
 import androidx.databinding.BaseObservable;
 
-import com.bs.knows.activity.ChangePasswordActivity;
-import com.bs.knows.databinding.ActivityMineBinding;
+import com.bs.knows.activity.ChangePasswordActivity;;
 import com.bs.knows.model.UserUtilsModel;
 
 public class UserMineVM extends BaseObservable {
-
-    private ActivityMineBinding binding;
-
-    public UserMineVM(ActivityMineBinding binding) {
-        this.binding = binding;
-    }
 
     public void gotoUpdatePassword(View view){
         Context context=view.getContext();

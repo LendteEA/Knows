@@ -13,7 +13,6 @@ import com.bs.knows.model.UserUtilsModel;
 public class UserRegisterVM extends BaseObservable {
 
     private ActivityRegisterBinding binding;
-    private UserUtilsModel userUtilsModel;
 
     public UserRegisterVM(ActivityRegisterBinding binding) {
         this.binding = binding;

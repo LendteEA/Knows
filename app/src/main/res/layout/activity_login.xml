@@ -20,8 +20,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_saomiao"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_saomiao" />
 
         <com.bs.knows.views.InputView
             android:id="@+id/input_phone_login"
@@ -48,16 +49,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/marginSize"
-            android:text="没有账号？立即注册"
             android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/infoSize"
+            android:onClick="@{userlogin.gotoRegister}"
+            android:padding="@dimen/marginSize"
+            android:text="@string/hint_register"
             android:textColor="@color/mainColor"
-            android:onClick="@{userlogin.gotoRegister}" />
+            android:textSize="@dimen/infoSize" />
 
         <Button
             style="@style/commintButton"
-            android:text="登录"
+            android:text="@string/login"
             android:textSize="@dimen/titleSize"
             android:layout_marginTop="@dimen/marginSize"
             android:onClick="@{userlogin.LoginCheckUserMessage}" />

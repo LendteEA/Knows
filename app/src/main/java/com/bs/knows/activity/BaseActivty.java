@@ -8,10 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
 import com.bs.knows.R;
+
 import java.util.List;
 
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -28,41 +28,13 @@ public class BaseActivty extends Activity implements EasyPermissions.PermissionC
     private long exitTime = 0;
 
     /**
-     * 返回一个继承自view的实体 findviewbyid的封装方法
-     *
-     * @param id  id
-     * @param <T> T
-     * @return findViewById
-     */
-    protected <T extends View> T fd(@IdRes int id) {
-        return findViewById(id);
-    }
-
-
-    /**
      * 初始化NavBar
      *
      * @param isShowBack 是否显示返回键
      * @param title      页面名称
      * @param isShowMine 是否显示我的
      */
-//    protected void initNavBar(Activity activity, boolean isShowBack, String title, boolean isShowMine) {
-//        NavBarBinding barBinding = DataBindingUtil.setContentView(activity, R.layout.nav_bar);
-//        barBinding.ivBack.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
-//        barBinding.ivMine.setVisibility(isShowMine ? View.VISIBLE : View.GONE);
-//        barBinding.tvTitle.setText(title);
-//
-//        barBinding.ivBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
-//        NavBarModel navBarModel=new NavBarModel();
-//        barBinding.setNavBar(navBarModel);
-//    }
-
-    protected void initNavBar(Activity activity,boolean isShowBack, String title, boolean isShowMine) {
+    protected void initNavBar(boolean isShowBack, String title, boolean isShowMine) {
 
         ImageView ivBack = findViewById(R.id.iv_back);
         ImageView ivMine = findViewById(R.id.iv_mine);
@@ -130,7 +102,7 @@ public class BaseActivty extends Activity implements EasyPermissions.PermissionC
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         //处理权限名字字符串
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (String str : perms){
             sb.append(str);
             sb.append("\n");
@@ -159,17 +131,6 @@ public class BaseActivty extends Activity implements EasyPermissions.PermissionC
                     .show();
         }
     }
-
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        //使用EasyPermissionHelper注入回调
-//        EasyPermissionHelper.getInstance().onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-//    }
-
-
-    //
 
 
 

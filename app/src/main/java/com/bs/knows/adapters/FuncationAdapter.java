@@ -14,17 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
 import com.bs.knows.activity.CamerasActivity;
-import com.bs.knows.activity.MainActivity;
 import com.bumptech.glide.Glide;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
-public class funcationAdapter extends RecyclerView.Adapter<funcationAdapter.viewHolder> {
+public class FuncationAdapter extends RecyclerView.Adapter<FuncationAdapter.viewHolder> {
 
     private Context mContext;
     private String TAG = "Main";
 
-    public funcationAdapter(Context context) {
+    public FuncationAdapter(Context context) {
         mContext = context;
     }
 

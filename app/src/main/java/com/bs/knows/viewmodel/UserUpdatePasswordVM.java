@@ -1,12 +1,10 @@
 package com.bs.knows.viewmodel;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 
 import androidx.databinding.BaseObservable;
 
-import com.bs.knows.activity.MineActivity;
 import com.bs.knows.databinding.ActivityChangePasswdBinding;
 import com.bs.knows.model.UserUtilsModel;
 

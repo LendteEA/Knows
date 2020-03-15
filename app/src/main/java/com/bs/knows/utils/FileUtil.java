@@ -11,10 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileUtil {
-//    public static File getSaveFile(Context context) {
-//        File file = new File(context.get, "pic.jpg");
-//        return file;
-//    }
+
     private static String TAG="error";
 
     /**

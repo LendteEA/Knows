@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/marginSize"
-            android:text="已有账号？请登录！"
+            android:text="@string/gotologin"
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/infoSize"
             android:textColor="@color/mainColor"
@@ -68,7 +68,7 @@
         <Button
             android:id="@+id/bt_commintButton"
             style="@style/commintButton"
-            android:text="注册"
+            android:text="@string/Register_now"
             android:textSize="@dimen/titleSize"
             android:layout_marginTop="@dimen/marginSize"
             android:onClick="@{userRegister.CheckUserRegisterMessage}" />

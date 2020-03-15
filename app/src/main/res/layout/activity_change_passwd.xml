@@ -58,10 +58,10 @@
 
         <Button
             style="@style/commintButton"
-            android:text="@string/Register"
-            android:textSize="@dimen/titleSize"
             android:layout_marginTop="@dimen/marginSize"
-            android:onClick="@{userupdatepassword.CheckUserUpdateMessage}" />
+            android:onClick="@{userupdatepassword.CheckUserUpdateMessage}"
+            android:text="@string/Register"
+            android:textSize="@dimen/titleSize" />
 
     </LinearLayout>
 </layout>

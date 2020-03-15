@@ -5,29 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.databinding.BindingAdapter;
-
-import com.baidu.ocr.sdk.OCR;
-import com.baidu.ocr.sdk.OnResultListener;
-import com.baidu.ocr.sdk.exception.OCRError;
-import com.baidu.ocr.sdk.model.AccessToken;
-import com.baidu.ocr.sdk.model.GeneralParams;
-import com.baidu.ocr.sdk.model.GeneralResult;
-import com.baidu.ocr.sdk.model.ResponseResult;
-import com.bs.knows.R;
-import com.bs.knows.activity.ShowDetailActivity;
 import com.bs.knows.databinding.ActivityShowDetailBinding;
-import com.bs.knows.utils.ImageBean;
 import com.bumptech.glide.Glide;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-
-import static cn.bmob.v3.Bmob.getApplicationContext;
 
 public class showDetailModel {
 

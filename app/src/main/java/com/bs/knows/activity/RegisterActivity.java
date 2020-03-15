@@ -22,6 +22,6 @@ public class RegisterActivity extends BaseActivty {
         UserRegisterVM userRegisterVM =new UserRegisterVM(binding);
         binding.setUserRegister(userRegisterVM);
 
-        initNavBar(this,true,"注册",false);
+        initNavBar(true,"注册",false);
     }
 }

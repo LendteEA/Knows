@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="center|center_horizontal"
             android:layout_margin="@dimen/albumMarginSize">
 
@@ -34,9 +34,9 @@
                 android:id="@+id/tv_function_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10.00万"
+                android:text="扫描识别"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/titleSize"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="@dimen/albumMarginSize"/>
 
