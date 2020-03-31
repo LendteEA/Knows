@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
+import com.bs.knows.connect.Api;
+import com.bs.knows.connect.GetUserData;
 import com.bs.knows.databinding.ActivityMainBinding;
 import com.bs.knows.viewmodel.MainActivityVM;
 
@@ -16,7 +18,8 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 //从父类BaseActivity继承一些共性的东西
 public class MainActivity extends BaseActivty {
-
+    private Api api;
+    private String TAG="TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +44,4 @@ public class MainActivity extends BaseActivty {
         MainActivityVM.MineActivity(mine);
 
     }
-
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.RegexUtils;
@@ -11,6 +12,7 @@ import com.bs.knows.R;
 import com.bs.knows.activity.LoginActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.MineActivity;
+import com.bs.knows.connect.GetUserData;
 import com.bs.knows.utils.SPUtils;
 import com.bs.knows.utils.UserBean;
 
@@ -21,7 +23,7 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class UserUtilsModel {
 
-    private static String TAG = "error";
+    private static String TAG = "TAG";
 
 
 //    ======================================================  用户登录  ======================================================
@@ -33,24 +35,29 @@ public class UserUtilsModel {
      * @param phone    用户名
      * @param password 密码
      */
-    public static void userLogin(final Context context, final String phone, String password) {
-        final UserBean user = new UserBean();
-        if (!validateLogin(context, phone, password)) {
-            return;
-        }
+    public static void userLogin(final Context context, String phone, String password) {
+//        if (!validateLogin(context, phone, password)) {
+//            return;
+//        }
+        Log.d(TAG, "userLogin phone:"+phone);
+        boolean isError = GetUserData.returnGetUserDataisError();
+        boolean userIsExist = GetUserData.UserIsExist(phone);
+        boolean passwordIsCorrect = GetUserData.UserDataPasswdIsCorrect(phone, password);
 
-        user.setUsername(phone);
-        user.setPassword(password);
-        user.login(new SaveListener<UserBean>() {
-            @Override
-            public void done(UserBean bmobuser, BmobException e) {
-                if (e == null) {
+
+
+        Log.d(TAG, "userLogin userIsExist:"+userIsExist);
+        if (!isError) {
+
+            if (userIsExist) {
+
+                if (passwordIsCorrect) {
                     //保存用户登录标记，若失败则不可登录
-                    boolean isSave=SPUtils.saveUser(context,phone);
-                    if(!isSave){
+                    boolean isSave = SPUtils.saveUser(context, phone);
+                    if (!isSave) {
                         Toast.makeText(context, "系统错误！请稍后重试", Toast.LENGTH_SHORT).show();
 
-                    }else{
+                    } else {
                         Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(context, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -63,45 +70,54 @@ public class UserUtilsModel {
                     }
 
                 } else {
-                    ChackReturnCode(context, e);
+
+                    Toast.makeText(context, "登录失败！密码错误！", Toast.LENGTH_SHORT).show();
                 }
+
+            }else {
+                Toast.makeText(context, "用户名不存在！", Toast.LENGTH_SHORT).show();
             }
-        });
+
+        }else {
+            Toast.makeText(context, "系统错误！请稍后重试！", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //    ====================================================  用户自动登录  ====================================================
+
     /**
      * 1.用户登录
-     *      当用户登录应用程序时，利用SharedPreferences保存用户标记
-     *       用全局单例类UserIsLogin保存登录信息
-     *          在用户登录之后
-     *         在用户重新打开程序时，检测SharedPreferences是否保存标记，
-     *              如果存在则为UserIsLogin辅助，并进入主页。若不存在，则进入登录页面
-     *
+     * 当用户登录应用程序时，利用SharedPreferences保存用户标记
+     * 用全局单例类UserIsLogin保存登录信息
+     * 在用户登录之后
+     * 在用户重新打开程序时，检测SharedPreferences是否保存标记，
+     * 如果存在则为UserIsLogin辅助，并进入主页。若不存在，则进入登录页面
+     * <p>
      * 2.用户退出
-     *      删除SharedPreferences中的标记，退出到登录页面
+     * 删除SharedPreferences中的标记，退出到登录页面
      */
 
-    public static class UserIsLogin{
+    public static class UserIsLogin {
         private static UserIsLogin instance;
 
-        private UserIsLogin(){
+        private UserIsLogin() {
 
         }
 
         /**
          * 验证是否存在已登录用户
-         * @return  返回标识符
+         *
+         * @return 返回标识符
          */
-        public static boolean validateUserLogin(Context context){
-           return SPUtils.isLoginUser(context);
+        public static boolean validateUserLogin(Context context) {
+            return SPUtils.isLoginUser(context);
         }
 
-        public static UserIsLogin getInstance(){
-            if(instance==null){
-                synchronized (UserIsLogin.class){
-                    if(instance==null){
-                        instance=new UserIsLogin();
+        public static UserIsLogin getInstance() {
+            if (instance == null) {
+                synchronized (UserIsLogin.class) {
+                    if (instance == null) {
+                        instance = new UserIsLogin();
                     }
                 }
             }
@@ -110,18 +126,11 @@ public class UserUtilsModel {
 
 
         private String phone;
-        public  void setPhone(String phone) {
+
+        public void setPhone(String phone) {
             this.phone = phone;
         }
     }
-
-
-
-
-
-
-
-
 
 
     //    ======================================================  用户注册  ======================================================

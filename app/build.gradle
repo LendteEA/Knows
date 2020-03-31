@@ -64,7 +64,7 @@ dependencies {
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
     //Rxjava
@@ -76,4 +76,6 @@ dependencies {
     implementation project(path: ':ocr_ui')
     //Dialog
     implementation 'com.github.HanHuoBin:BaseDialog:1.2.0'
+    //binner轮播图
+    implementation 'com.youth.banner:banner:1.4.10'
 }

@@ -1,4 +1,4 @@
-package com.bs.knows.constants;
+package com.bs.knows.utils;
 
 public class SPconstants {
 
