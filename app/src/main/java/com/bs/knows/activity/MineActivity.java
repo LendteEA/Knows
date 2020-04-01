@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
 import com.bs.knows.databinding.ActivityMineBinding;
+import com.bs.knows.model.UserUtilsModel;
 import com.bs.knows.viewmodel.UserMineVM;
 
 public class MineActivity extends BaseActivty {
@@ -24,6 +25,7 @@ public class MineActivity extends BaseActivty {
         binding.setUserDetail(userMineVM);
 
         initView();
+        UserUtilsModel.setUserName(binding);
     }
 
     private void initView() {

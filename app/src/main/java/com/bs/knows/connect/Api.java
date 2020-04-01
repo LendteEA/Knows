@@ -17,21 +17,24 @@ public interface Api {
     @GET("/app.php?action=read")
     Call<UserBean> getUserDatas();
 
+    //                         查询密码是否正确
     @FormUrlEncoded
     @POST("/app.php?action=check_pswd")
-    Call<UserBean> getUserDataPasswd(@Field("username") String username,@Field("password") String password);
+    Call<checkUserPswd> UserDataPasswdisCorrect(@Field("username") String username, @Field("password") String password);
 
-    @POST("/app.php?action=check_pswd")
-    Observable<UserBean> getUserDataPasswdRx(@Field("username") String username,@Field("password") String password);
-
-
+    //                         查询用户是否存在
     @FormUrlEncoded
     @POST("/app.php?action=check_user_exist")
-    Call<UserBean> UserisExist(@Field("username") String username);
+    Call<checkUserId> UserisExist(@Field("username") String username);
 
-//    @POST("/app.php?action=check_user_exist")
-//    Observable<UserBean> UserisExistRx(@Field("username") String username);
 
+    @FormUrlEncoded
+    @POST("/app.php?action=register")
+    Call<UserRegister> UserRegister(@Field("username") String username, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("/app.php?action=updates")
+    Call<UserUpdatePs> UserUpdatePs(@Field("username") String username, @Field("old_password") String old_password,@Field("new_password") String new_password);
 
 
 

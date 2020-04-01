@@ -6,4 +6,8 @@ public class StaticUtils {
     public static final String IMAGE_NAME="Crop"+System.currentTimeMillis()+".jpg";
     public static final String BASE_URL="http://39.107.119.177";
 
+    public static boolean IS_ERROR;
+    public static boolean IS_PASSWORD;
+    public static boolean IS_USER;
+
 }
