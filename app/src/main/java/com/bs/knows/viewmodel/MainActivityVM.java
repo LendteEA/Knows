@@ -27,4 +27,8 @@ public class MainActivityVM {
     public void startScans(View view){
         MainActivityModel.startScan(mContext);
     }
+
+    public void startScanB(View view){
+        MainActivityModel.startScanB(mBinding,mContext);
+    }
 }

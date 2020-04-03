@@ -1,5 +1,6 @@
 package com.bs.knows.adapters;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
 import com.bs.knows.activity.CamerasActivity;
+import com.bs.knows.activity.MainActivity;
 import com.bumptech.glide.Glide;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class FuncationAdapter extends RecyclerView.Adapter<FuncationAdapter.viewHolder> {
 
@@ -43,7 +47,6 @@ public class FuncationAdapter extends RecyclerView.Adapter<FuncationAdapter.view
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(mContext, CamerasActivity.class);
                 mContext.startActivity(intent);
             }

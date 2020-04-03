@@ -1,4 +1,4 @@
-package com.bs.knows.connect;
+package com.bs.knows.connect.bean;
 
 public class UserRegister {
 

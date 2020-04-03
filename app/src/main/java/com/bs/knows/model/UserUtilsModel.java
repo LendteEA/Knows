@@ -7,18 +7,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.databinding.DataBindingUtil;
-
 import com.blankj.utilcode.util.RegexUtils;
 import com.bs.knows.R;
 import com.bs.knows.activity.LoginActivity;
 import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.MineActivity;
 import com.bs.knows.connect.Api;
-import com.bs.knows.connect.UserRegister;
-import com.bs.knows.connect.UserUpdatePs;
-import com.bs.knows.connect.checkUserId;
-import com.bs.knows.connect.checkUserPswd;
+import com.bs.knows.connect.bean.UserRegister;
+import com.bs.knows.connect.bean.UserUpdatePs;
+import com.bs.knows.connect.bean.checkUserId;
+import com.bs.knows.connect.bean.checkUserPswd;
 import com.bs.knows.connect.initRetrofit;
 import com.bs.knows.databinding.ActivityMineBinding;
 import com.bs.knows.utils.SPUtils;

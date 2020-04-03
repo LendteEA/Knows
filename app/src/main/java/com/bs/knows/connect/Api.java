@@ -1,12 +1,24 @@
 package com.bs.knows.connect;
 
+import com.bs.knows.connect.bean.UploadNewPic;
+import com.bs.knows.connect.bean.UserBean;
+import com.bs.knows.connect.bean.UserHistoryData;
+import com.bs.knows.connect.bean.UserRegister;
+import com.bs.knows.connect.bean.UserUpdatePs;
+import com.bs.knows.connect.bean.checkUserId;
+import com.bs.knows.connect.bean.checkUserPswd;
+
+import java.io.File;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.Part;
 import rx.Observable;
 
 public interface Api {
@@ -34,8 +46,19 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("/app.php?action=updates")
-    Call<UserUpdatePs> UserUpdatePs(@Field("username") String username, @Field("old_password") String old_password,@Field("new_password") String new_password);
+    Call<UserUpdatePs> UserUpdatePs(@Field("username") String username, @Field("old_password") String old_password, @Field("new_password") String new_password);
 
+    @FormUrlEncoded
+    @POST("/app.php?action=check_history")
+    Call<UserHistoryData> UserHistoryData(@Field("username") String username);
+
+    @Multipart
+    @POST("/app.php?action=uploadnewpic")
+    Call<UploadNewPic> Uploadnewpic(@Part("username") RequestBody username, @Part MultipartBody.Part file);
+
+    @Multipart
+    @POST("/app.php?action=uploadnewpic")
+    Observable<UploadNewPic> UploadnewpicRX(@Part("username") RequestBody username, @Part MultipartBody.Part file);
 
 
 }

@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
 import com.bs.knows.connect.Api;
-import com.bs.knows.connect.GetUserData;
 import com.bs.knows.databinding.ActivityMainBinding;
 import com.bs.knows.viewmodel.MainActivityVM;
 
@@ -43,5 +42,11 @@ public class MainActivity extends BaseActivty {
         ImageView mine = findViewById(R.id.iv_mine);
         MainActivityVM.MineActivity(mine);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initView();
     }
 }

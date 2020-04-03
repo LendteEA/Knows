@@ -7,7 +7,6 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.connect.Api;
-import com.bs.knows.connect.GetUserData;
 import com.bs.knows.utils.StaticUtils;
 import com.bs.knows.viewmodel.UserLoginVM;
 import com.bs.knows.R;
