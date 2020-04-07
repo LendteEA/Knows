@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivty {
         EasyPermissions.requestPermissions(this,
                 "申请权限",
                 0,
+                Manifest.permission.CAMERA,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
 

@@ -62,6 +62,7 @@ public class MainActivityModel {
         Retrofit retrofit= initRetrofit.getUserData();
         Api api=retrofit.create(Api.class);
         Call<UserHistoryData> task=api.UserHistoryData(username);
+        Log.d(TAG, "getHistoryData: Username "+username);
         task.enqueue(new Callback<UserHistoryData>() {
             @Override
             public void onResponse(Call<UserHistoryData> call, Response<UserHistoryData> response) {
@@ -72,7 +73,7 @@ public class MainActivityModel {
 //                    UserHistoryData userHistoryData=gson.fromJson(result,UserHistoryData.class);
 //                    Log.d(TAG, "initListView:  getHistoryData"+userHistoryData);
                     UserHistoryData userHistoryData=response.body();
-                                        Log.d(TAG, "initListView:  getHistoryData"+userHistoryData);
+                    Log.d(TAG, "initListView:  getHistoryData"+userHistoryData);
                     UpdateList(userHistoryData);
                 } catch (Exception e) {
                     e.printStackTrace();

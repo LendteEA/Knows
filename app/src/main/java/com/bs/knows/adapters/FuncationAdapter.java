@@ -47,6 +47,10 @@ public class FuncationAdapter extends RecyclerView.Adapter<FuncationAdapter.view
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                EasyPermissions.requestPermissions(mContext.getApplicationContext(),
+//                        "申请权限",
+//                        0,
+//                        Manifest.permission.CAMERA);
                 Intent intent = new Intent(mContext, CamerasActivity.class);
                 mContext.startActivity(intent);
             }

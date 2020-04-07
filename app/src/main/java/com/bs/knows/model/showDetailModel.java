@@ -13,7 +13,7 @@ import java.io.ByteArrayOutputStream;
 public class showDetailModel {
 
 
-    private static String TAG = "show";
+    private static String TAG = "TAG";
 
 
     public static void showGetPic(Context context,ActivityShowDetailBinding binding,Intent intent) {
