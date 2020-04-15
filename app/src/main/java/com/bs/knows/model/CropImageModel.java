@@ -57,7 +57,7 @@ public class CropImageModel {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://39.107.119.177/app.php?action=uploadnewpic")
+                .url(StaticUtils.BASE_URL+"/app.php?action=uploadnewpic")
                 .method("POST", bodys)
                 .build();
 
