@@ -1,5 +1,6 @@
 package com.bs.knows.connect;
 
+import com.bs.knows.connect.bean.HistoryDataText;
 import com.bs.knows.connect.bean.UploadNewPic;
 import com.bs.knows.connect.bean.UserBean;
 import com.bs.knows.connect.bean.UserHistoryData;
@@ -52,6 +53,14 @@ public interface Api {
     @POST("/app.php?action=check_history")
     Call<UserHistoryData> UserHistoryData(@Field("username") String username);
 
+    @FormUrlEncoded
+    @POST("/app.php?action=findscantextfile")
+    Call<HistoryDataText> getScanDataFilePath(@Field("imgpath") String imgpath);
+
+    @FormUrlEncoded
+    @POST("/app.php?action=getscantext")
+    Call<HistoryDataText> ShowScanText(@Field("imgscanfilepath") String imgscanfilepath);
+
     @Multipart
     @POST("/app.php?action=uploadnewpic")
     Call<UploadNewPic> Uploadnewpic(@Part("username") RequestBody username, @Part MultipartBody.Part file);
@@ -59,6 +68,8 @@ public interface Api {
     @Multipart
     @POST("/app.php?action=uploadnewpic")
     Observable<UploadNewPic> UploadnewpicRX(@Part("username") RequestBody username, @Part MultipartBody.Part file);
+
+
 
 
 }

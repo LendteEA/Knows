@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="mainActivity"
             type="com.bs.knows.viewmodel.MainActivityVM" />
@@ -13,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#566270"
         tools:context=".activity.MainActivity">
 
         <include layout="@layout/nav_bar" />
@@ -27,24 +29,41 @@
                 android:orientation="vertical">
 
 
-                <ImageView
-                    android:id="@+id/iv_function"
-                    style="@style/functionStyle"
-                    android:layout_width="@dimen/dp_200"
-                    android:layout_height="@dimen/dp_200"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:layout_marginBottom="@dimen/dp_20"
-                    android:onClick="@{mainActivity.startScans}"
-                    android:background="@drawable/ic_functionbackground" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#282c37"
+                    android:orientation="vertical"
+                    >
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="开始扫描"
+                        android:textSize="@dimen/dp_40"
+                        android:textColor="#EFF0F4"
+                        android:gravity="center"
+                        android:textStyle="normal" />
+
+                    <ImageView
+                        android:id="@+id/iv_function"
+                        style="@style/functionStyle"
+                        android:layout_width="500sp"
+                        android:layout_height="250sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-20sp"
+                        android:layout_marginBottom="@dimen/dp_fu100"
+                        android:background="@drawable/ic_scan"
+                        android:onClick="@{mainActivity.startScans}" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/marginSize"
                     android:gravity="center_vertical"
-                    android:layout_margin="@dimen/marginSize">
+
+                    android:orientation="horizontal">
 
                     <View
                         android:layout_width="4dp"
@@ -54,19 +73,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="最热音乐"
+                        android:layout_marginLeft="@dimen/marginTabSize"
+                        android:text="历史记录"
                         android:textColor="@color/titleColor"
                         android:textSize="@dimen/titleSize"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="@dimen/marginTabSize" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
 
             </LinearLayout>
 

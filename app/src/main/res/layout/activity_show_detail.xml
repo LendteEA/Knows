@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="showDetail"
             type="com.bs.knows.viewmodel.ShowDetailVM" />
@@ -13,29 +14,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#566270"
         tools:context=".activity.ShowDetailActivity">
 
         <include layout="@layout/nav_bar" />
 
-
-        <TextView
-            android:id="@+id/tv_showDetail"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="picPath"
-            android:textSize="@dimen/titleSize" />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_showDetail"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:scaleType="center" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="OCR"
-            android:onClick="OCR"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tv_showDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="picPath"
+                    android:textSize="15sp"
+                    android:textStyle="normal"/>
+
+                <com.bs.knows.utils.ResizableImageView
+                    android:id="@+id/iv_showDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY" />
+
+                <com.bin.david.form.core.SmartTable
+                    android:id="@+id/table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#566270"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_10"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

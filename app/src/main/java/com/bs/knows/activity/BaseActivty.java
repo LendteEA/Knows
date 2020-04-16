@@ -54,34 +54,34 @@ public class BaseActivty extends Activity implements EasyPermissions.PermissionC
     }
 
 
-    /**
-     * 按两次返回键退出
-     *
-     * @param keyCode 获取按键id
-     * @param event   按键事件
-     * @return 返回是否按下按键
-     */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exit();
-            return false;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    private void exit() {
-
-        if ((System.currentTimeMillis() - exitTime) > 3000) {
-            Toast.makeText(this,
-                    "再按一次退出程序", Toast.LENGTH_SHORT).show();
-            exitTime = System.currentTimeMillis();
-        } else {
-            finish();
-            System.exit(0);
-        }
-    }
+//    /**
+//     * 按两次返回键退出
+//     *
+//     * @param keyCode 获取按键id
+//     * @param event   按键事件
+//     * @return 返回是否按下按键
+//     */
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            exit();
+//            return false;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+//
+//    private void exit() {
+//
+//        if ((System.currentTimeMillis() - exitTime) > 3000) {
+//            Toast.makeText(this,
+//                    "再按一次退出程序", Toast.LENGTH_SHORT).show();
+//            exitTime = System.currentTimeMillis();
+//        } else {
+//            finish();
+//            System.exit(0);
+//        }
+//    }
 
 
     @Override

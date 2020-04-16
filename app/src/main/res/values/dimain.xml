@@ -21,6 +21,11 @@
     <dimen name="radius">10sp</dimen>
 
 
+    <dimen name="dp_fu100">-100sp</dimen>
+    <dimen name="dp_650">650sp</dimen>
+    <dimen name="dp_300">300sp</dimen>
+
+
 
     <dimen name="itemHeight">44sp</dimen>
     <dimen name="marginTabSize">4sp</dimen>

@@ -54,29 +54,6 @@ public class FileUtil {
             bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
 
 
-//            //初始化网络请求
-//            Api api= initRetrofit.getUserData().create(Api.class);
-//
-//            RequestBody requestBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-//            // MultipartBody.Part  和后端约定好Key，这里的partName暂时用"file_key_*"
-//            MultipartBody.Part partFile = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-//            // 添加参数用户名和密码，并且是文本类型，设置MediaType为文本类型（一说：multipart/form-data，待检验）
-//            RequestBody userName = RequestBody.create(MediaType.parse("text/plain"), UserUtilsModel.UserIsLogin.getInstance().getPhone());
-//
-//            //上传到服务器
-//            Call<UploadNewPic> call=api.Uploadnewpic(userName,partFile);
-//            call.enqueue(new Callback<UploadNewPic>() {
-//                @Override
-//                public void onResponse(Call<UploadNewPic> call, Response<UploadNewPic> response) {
-//                    Log.d(TAG, "onResponse  isUploadpic: "+response.body().isUploadpic()+" save path: "+response.body().getSavepath());
-//                }
-//
-//                @Override
-//                public void onFailure(Call<UploadNewPic> call, Throwable t) {
-//                    Log.d(TAG, "onFeild"+t.getMessage());
-//                }
-//            });
-
 
             //写入，这里会卡顿，因为图片较大
             fileOutputStream.flush();

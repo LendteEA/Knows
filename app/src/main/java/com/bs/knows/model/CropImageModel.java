@@ -1,10 +1,14 @@
 package com.bs.knows.model;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.bs.knows.R;
+import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.ShowDetailActivity;
 import com.bs.knows.connect.Api;
 import com.bs.knows.connect.bean.UploadNewPic;
@@ -61,6 +65,7 @@ public class CropImageModel {
                 .method("POST", bodys)
                 .build();
 
+
       client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -69,7 +74,8 @@ public class CropImageModel {
 
             @Override
             public void onResponse(Call call, okhttp3.Response response) throws IOException {
-                Log.d(TAG, "onResponse: "+response.body().string());
+                Log.d(TAG, "onResponse: "+response.body());
+
             }
         });
 
@@ -96,9 +102,22 @@ public class CropImageModel {
 
 
 
-        Intent intent=new Intent(context, ShowDetailActivity.class);
-        intent.putExtra("picPaths",String.valueOf(filePath));
-        context.startActivity(intent);
+
+        AlertDialog alertDialog1 = new AlertDialog.Builder(context)
+                .setTitle("图片上传成功")//标题
+                .setMessage("图片已上传，识别完成后可以在识别历史中找到识别结果")//内容
+                .setIcon(R.drawable.ic_saomiao)//图标
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent(context, MainActivity.class);
+//                        intent.putExtra("picPaths",String.valueOf(filePath));
+                        context.startActivity(intent);
+                    }
+                })
+                .create();
+        alertDialog1.show();
+
 
         RecoginzeService.recAccurateBasic(context, filePath, new RecoginzeService.ServiceListener() {
             @Override

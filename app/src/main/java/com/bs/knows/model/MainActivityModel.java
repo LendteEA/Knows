@@ -38,7 +38,6 @@ public class MainActivityModel {
         mListAdapter = new HistoryListAdapter(context);
         binding.rvList.setAdapter(mListAdapter);
         getHistoryData(UserUtilsModel.UserIsLogin.getInstance().getPhone());
-        Log.d(TAG, "initListView:  getHistoryData");
 
     }
 
@@ -67,11 +66,6 @@ public class MainActivityModel {
             @Override
             public void onResponse(Call<UserHistoryData> call, Response<UserHistoryData> response) {
                 try {
-//                    String result=response.body().toString();
-//                    Gson gson=new Gson();
-//
-//                    UserHistoryData userHistoryData=gson.fromJson(result,UserHistoryData.class);
-//                    Log.d(TAG, "initListView:  getHistoryData"+userHistoryData);
                     UserHistoryData userHistoryData=response.body();
                     Log.d(TAG, "initListView:  getHistoryData"+userHistoryData);
                     UpdateList(userHistoryData);

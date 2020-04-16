@@ -1,6 +1,8 @@
 package com.bs.knows.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -18,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bs.knows.R;
+import com.bs.knows.activity.MainActivity;
 import com.bs.knows.activity.ShowDetailActivity;
 import com.bs.knows.connect.Api;
 import com.bs.knows.connect.bean.UserHistoryData;
@@ -40,53 +43,57 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     private View mItemView;
     private RecyclerView mRv;
     private boolean isCalcaulationRvHeight;
-    private String TAG="TAG";
+    private String TAG = "TAG";
 
-    private List<UserHistoryData.HistoryBean> data=new ArrayList<>();
+    Retrofit retrofit = initRetrofit.getUserData();
+    Api api = retrofit.create(Api.class);
 
-    public HistoryListAdapter(Context context){
+    private List<UserHistoryData.HistoryBean> data = new ArrayList<>();
+
+    public HistoryListAdapter(Context context) {
         mContext = context;
     }
 
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new viewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_history_list,parent, false));
+        return new viewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_history_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
-       UserHistoryData.HistoryBean databean=data.get(position);
-       holder.tvName.setText(databean.getTitle());
-       holder.tvAuthor.setText("最后更新时间："+databean.getUpdate_date());
-        Log.d(TAG, "onBindViewHolder: "+StaticUtils.DOWNLOAD_IMG_BASE_URL+databean.getImg_path());
+        UserHistoryData.HistoryBean databean = data.get(position);
+        holder.tvName.setText(databean.getTitle());
+        holder.tvAuthor.setText("最后更新时间：" + databean.getUpdate_date());
+//        Log.d(TAG, "onBindViewHolder: " + StaticUtils.DOWNLOAD_IMG_BASE_URL + databean.getImg_path());
 
 //        setRecyclerViewHeight();
 
         Glide.with(mContext)
-                .load(StaticUtils.DOWNLOAD_IMG_BASE_URL+databean.getImg_path())
+                .load(StaticUtils.DOWNLOAD_IMG_BASE_URL + databean.getImg_path())
                 .into(holder.ivIcon)
                 .onStart();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext, ShowDetailActivity.class);
-                intent.putExtra("picPaths",StaticUtils.DOWNLOAD_IMG_BASE_URL+databean.getImg_path());
-                mContext.startActivity(intent);
+                if (databean.getFile_path().equals("1")) {
+
+                    AlertDialog alertDialog1 = new AlertDialog.Builder(mContext)
+                            .setTitle("识别中")//标题
+                            .setMessage("图片正在识别，请稍后")//内容
+                            .setIcon(R.drawable.ic_saomiao)//图标
+                            .create();
+                    alertDialog1.show();
+                } else {
+
+                    Intent intent = new Intent(mContext, ShowDetailActivity.class);
+                    intent.putExtra("picPaths", StaticUtils.DOWNLOAD_IMG_BASE_URL + databean.getImg_path());
+                    intent.putExtra("scanfilePaths", databean.getFile_path());
+                    mContext.startActivity(intent);
+                }
             }
         });
-//        holder.tvName.setText("历史1");
-//        holder.tvAuthor.setText("历史1");
-//
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(mContext, ShowDetailActivity.class);
-////                intent.putExtra(PlayMusicActivity.MUSIC_ID, musicModel.getMusicId());
-//                mContext.startActivity(intent);
-//            }
-//        });
     }
 
     @Override
@@ -100,11 +107,8 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
      * 2、itemView的数量
      * 3、使用 itemViewHeight * itemViewNum = RecyclerView的高度
      */
-    private void setRecyclerViewHeight () {
+    private void setRecyclerViewHeight() {
 
-//        if (isCalcaulationRvHeight || mRv == null) return;
-//
-//        isCalcaulationRvHeight = true;
 
 //        获取ItemView的高度
         RecyclerView.LayoutParams itemViewLp = (RecyclerView.LayoutParams) mItemView.getLayoutParams();

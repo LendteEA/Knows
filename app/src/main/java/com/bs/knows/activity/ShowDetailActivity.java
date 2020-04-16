@@ -3,15 +3,22 @@ package com.bs.knows.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import androidx.databinding.DataBindingUtil;
 
 import com.bs.knows.R;
+import com.bs.knows.connect.Api;
+import com.bs.knows.connect.initRetrofit;
 import com.bs.knows.viewmodel.ShowDetailVM;
+
+import retrofit2.Retrofit;
 
 
 public class ShowDetailActivity extends BaseActivty {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +31,15 @@ public class ShowDetailActivity extends BaseActivty {
         binding.setShowDetail(showDetailVM);
         binding.tvShowDetail.setText(intent.getStringExtra("picPaths"));
         initView();
+
+        final ImageView imageView=(ImageView)findViewById(R.id.iv_showDetail);
+        ViewTreeObserver viewTreeObserver=imageView.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                imageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
         showDetailVM.getPic();
 
     }

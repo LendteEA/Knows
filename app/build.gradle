@@ -78,4 +78,7 @@ dependencies {
     implementation 'com.github.HanHuoBin:BaseDialog:1.2.0'
     //binner轮播图
     implementation 'com.youth.banner:banner:1.4.10'
+
+    //表格
+    implementation 'com.github.huangyanbin:SmartTable:2.0'
 }
